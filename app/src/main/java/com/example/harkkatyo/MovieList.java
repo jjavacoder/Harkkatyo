@@ -3,7 +3,9 @@ package com.example.harkkatyo;
 import java.util.ArrayList;
 
 public class MovieList {
-    public ArrayList add(){
+    ArrayList<Movie> movies = new ArrayList<>();
+    public void add(Movie movie){
+        movies.add(movie);
 
     }
 }

@@ -17,7 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class XMLReader {
 
-    public ArrayList read(String XMLAddress) {
+    public void read(String XMLAddress) {
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -26,7 +26,7 @@ public class XMLReader {
             doc.getDocumentElement().normalize();
 
             NodeList nList = doc.getDocumentElement().getElementsByTagName("TheatreArea");
-
+            MovieList AllMovies = new MovieList();
             for (int i = 0; i < nList.getLength(); i++) {
 
                 Node node = nList.item(i);
@@ -35,9 +35,8 @@ public class XMLReader {
                     String Name = element.getElementsByTagName("Name").item(0).getTextContent();
                     String id = element.getElementsByTagName("ID").item(0).getTextContent();
                     int idInt = Integer.parseInt(id);
-                    Theater th = new Theater(Name, idInt);
-                    theaterInfo.add(th);
-                    theaters.add(Name);
+                    Movie movie = new Movie(Name);
+                    AllMovies.add(movie);
                 }
             }
         } catch (IOException e) {
@@ -47,6 +46,5 @@ public class XMLReader {
         } catch (ParserConfigurationException parserConfigurationException) {
             parserConfigurationException.printStackTrace();
         }
-        return theaters;
     }
 }
