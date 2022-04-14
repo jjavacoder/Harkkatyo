@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Movie Name"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="153dp"
-        android:textColor="#FFEB3B"/>
+        android:textColor="#FFEB3B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="153dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
