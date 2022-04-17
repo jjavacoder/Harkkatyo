@@ -60,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFEB3B"
+            android:onClick="archivelayoutButton"
             android:text="@string/archive_b"
             android:textAlignment="center"
             android:textColor="#100C0C"
