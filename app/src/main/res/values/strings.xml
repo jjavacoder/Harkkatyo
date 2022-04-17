@@ -1,4 +1,5 @@
 <resources>
+    //reviewpage
     <string name="app_name">My Application2</string>
     <string name="head_string">REVIEWS</string>
     <string name="m1">STAR WARS</string>
@@ -9,4 +10,9 @@
         <item>"Stars"</item>
         <item>"Date"</item>
     </string-array>
+    //mainpage
+    <string name="name">FINNKINO</string>
+    <string name="review_b">REVIEWS</string>
+    <string name="archive_b">MOVIE ARCHIVE</string>
+
 </resources>
