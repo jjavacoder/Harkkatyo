@@ -9,6 +9,10 @@ public class Movie {
         this.name = name;
     }
 
+    public String getName(){
+        return name;
+    }
+
 
 
 }
