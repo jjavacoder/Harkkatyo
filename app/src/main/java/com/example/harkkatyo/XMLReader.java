@@ -25,18 +25,18 @@ public class XMLReader {
             Document doc = builder.parse(XMLAddress);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getDocumentElement().getElementsByTagName("TheatreArea");
-            MovieList AllMovies = new MovieList();
+            NodeList nList = doc.getDocumentElement().getElementsByTagName("Event");
+            MovieList allMovies = new MovieList();
             for (int i = 0; i < nList.getLength(); i++) {
 
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    String Name = element.getElementsByTagName("Name").item(0).getTextContent();
+                    String Name = element.getElementsByTagName("Title").item(0).getTextContent();
                     String id = element.getElementsByTagName("ID").item(0).getTextContent();
                     int idInt = Integer.parseInt(id);
                     Movie movie = new Movie(Name);
-                    AllMovies.add(movie);
+                    allMovies.add(movie);
                 }
             }
         } catch (IOException e) {
