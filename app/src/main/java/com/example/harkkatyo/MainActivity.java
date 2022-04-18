@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.mainpage);
 
 
-
     }
+
+
 
 
     //Review movie Button, takes you to the review view
