@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Harkkatyo</string>
+    //reviewpage
+    <string name="app_name">My Application2</string>
+    <string name="head_string">REVIEWS</string>
+    <string name="m1">STAR WARS</string>
+    <string name="m2">STAR IS BORN</string>
+    <string name="m3">ICE AGE 3</string>
+    <string name="back_b">BACK</string>
+    <string-array name="sortnames">
+        <item>"Stars"</item>
+        <item>"Date"</item>
+    </string-array>
+    //mainpage
+    <string name="name">FINNKINO</string>
+    <string name="review_b">REVIEWS</string>
+    <string name="archive_b">MOVIE ARCHIVE</string>
+
 </resources>
