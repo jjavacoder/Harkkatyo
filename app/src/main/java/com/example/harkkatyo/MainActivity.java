@@ -42,6 +42,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.reviews);
     }
     public void archivelayoutButton(View view){
-        setContentView(R.layout.archive);
+        setContentView(R.layout.activity_archive);
     }
 }
