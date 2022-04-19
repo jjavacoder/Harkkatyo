@@ -19,9 +19,12 @@ public class XMLReader {
 
     public void read(String URL) {
         try {
+            //give permissions
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
+            //create a new instance of DocumentBuilderFactory and??
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            //parse using the builder
             Document doc = builder.parse(URL);
             doc.getDocumentElement().normalize();
 
