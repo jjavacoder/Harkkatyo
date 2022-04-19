@@ -28,6 +28,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Search"
+    android:textColor="#050404"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.503"
@@ -35,13 +36,15 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.087" />
 
-<ListView
-    android:id="@+id/movieList"
-    android:layout_width="409dp"
-    android:layout_height="482dp"
-    app:layout_constraintBottom_toTopOf="@+id/button"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+    <ListView
+        android:id="@+id/movieList"
+        android:layout_width="335dp"
+        android:layout_height="470dp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchButton"
+        app:layout_constraintVertical_bias="0.539" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
