@@ -8,4 +8,14 @@ public class MovieList {
         movies.add(movie);
 
     }
+    public ArrayList<Movie> getMovies() {
+        return movies;
+    }
+
+    public void print() {
+        for (int i = 0; i < movies.size(); i++) {
+            String name = movies.get(i).getName();
+            System.out.println(name);
+        }
+    }
 }
