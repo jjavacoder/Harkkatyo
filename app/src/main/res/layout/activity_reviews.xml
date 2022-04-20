@@ -294,7 +294,7 @@
             android:layout_width="155dp"
             android:layout_height="57dp"
             android:layout_marginBottom="72dp"
-            android:text="&quot;Great movie&quot;"
+            android:text=" "
             android:textColor="#F4F4EF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
