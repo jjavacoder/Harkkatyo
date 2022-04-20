@@ -69,7 +69,7 @@
     android:layout_height="wrap_content"
     android:ems="10"
     android:inputType="textPersonName"
-    android:hint="Write review:"
+    android:text="Write review:"
     android:textColor="@color/white"
     android:textSize="22dp"
     app:layout_constraintBottom_toTopOf="@+id/selectDate"
