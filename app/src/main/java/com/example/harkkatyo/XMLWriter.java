@@ -14,8 +14,8 @@ public class XMLWriter {
         String info ="<Reviews>\n" +
                 "   <name>" + name + "</name>\n" +
                 "   <date>" + date + "</date>\n" +
-                "   <review" + review + "</review>\n" +
-                "   <stars" + stars + "</stars>\n" +
+                "   <review>" + review + "</review>\n" +
+                "   <stars>" + stars + "</stars>\n" +
                 "</Reviews>";
         try{
             osw = new OutputStreamWriter(context.openFileOutput("reviews.txt", Context.MODE_PRIVATE));
