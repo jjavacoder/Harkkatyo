@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.util.List;
 
 public class Archive extends AppCompatActivity {
-    String URL = "https://www.finnkino.fi/xml/Events/";
     String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
 
@@ -20,8 +19,6 @@ public class Archive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-        XMLReaderExternal reader = new XMLReaderExternal();
-        reader.read(URL);
 
         //Archive list
         listView = findViewById(R.id.movieList);
