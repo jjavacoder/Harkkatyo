@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Archive extends AppCompatActivity {
+    String URL = "https://www.finnkino.fi/xml/Events/";
     String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
 
@@ -19,12 +22,15 @@ public class Archive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
+        XMLReaderExternal reader = new XMLReaderExternal();
+        ArrayList<String> movies = reader.read(URL);
+
 
         //Archive list
         listView = findViewById(R.id.movieList);
 
         //connect data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(Archive.this, R.layout.changecolor, movies2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Archive.this, R.layout.changecolor, movies);
         //create listview obj
         listView.setAdapter(adapter);
 
