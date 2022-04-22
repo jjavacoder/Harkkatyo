@@ -13,20 +13,16 @@ public class XMLWriter {
 
     public void write(String name, Date date, String review, float stars ){
         OutputStreamWriter osw = null;
-        //File path = getApplicationContext().getFilesDir();
         String info ="<Reviews>\n" +
                 "   <name>" + name + "</name>\n" +
                 "   <date>" + date + "</date>\n" +
                 "   <review>" + review + "</review>\n" +
                 "   <stars>" + stars + "</stars>\n" +
-                "</Reviews>";
+                "</Reviews>\n";
         try{
-            osw = new OutputStreamWriter(context.openFileOutput("reviews.txt", Context.MODE_PRIVATE));
+            osw = new OutputStreamWriter(context.openFileOutput("reviews.txt", Context.MODE_APPEND));
             osw.write(info);
             osw.close();
-            /*FileOutputStream writer = new FileOutputStream(new File(path, fileName), true);
-            writer.write(content.getBytes());
-            writer.close();*/
         }catch (IOException e){
             e.printStackTrace();
         }
