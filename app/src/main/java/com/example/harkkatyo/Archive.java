@@ -39,8 +39,8 @@ public class Archive extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //show clicked message
-                Toast.makeText(Archive.this, "You clicked" +movies2[position],Toast.LENGTH_SHORT).show();
-                loadReview(movies2[position]);
+                Toast.makeText(Archive.this, "You clicked" + movies.get(position),Toast.LENGTH_SHORT).show();
+                loadReview(movies.get(position));
             }
         });
 
