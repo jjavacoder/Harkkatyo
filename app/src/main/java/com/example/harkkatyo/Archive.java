@@ -2,14 +2,14 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import java.util.List;
 
 public class Archive extends AppCompatActivity {
     String[] movies2 = {"oubfkb", "gg", "jghv"};
@@ -35,8 +35,25 @@ public class Archive extends AppCompatActivity {
                 Toast.makeText(Archive.this, "You clicked" +movies2[position],Toast.LENGTH_SHORT).show();
             }
         });
+        Button bt2 = findViewById(R.id.buttonab);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadActivity();
+            }
+
+
+        });
+
+    }
+    public void loadActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+
+    }
+
     }
     /*public void mainpagelayoutButton(View view){
         setContentView(R.layout.activity_mainpage);
     }*/
-}
