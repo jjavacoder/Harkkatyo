@@ -44,6 +44,8 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchButton"
-        app:layout_constraintVertical_bias="0.539" />
+        app:layout_constraintVertical_bias="0.539"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
