@@ -6,6 +6,7 @@
     <string name="m2">STAR IS BORN</string>
     <string name="m3">ICE AGE 3</string>
     <string name="back_b">BACK</string>
+    <string name="spin">SORT</string>
     <string-array name="sortnames">
         <item>"Stars"</item>
         <item>"Date"</item>

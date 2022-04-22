@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Harkkatyo" >
         <activity
-            android:name=".Mainpage"
-            android:exported="false" />
-        <activity
             android:name=".Reviews"
             android:exported="false" />
         <activity
