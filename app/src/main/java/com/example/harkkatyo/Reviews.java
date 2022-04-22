@@ -17,9 +17,25 @@ public class Reviews extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
+        Button bt2 = findViewById(R.id.button2);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadActivity();
+            }
+
+
+        });
+
 
     }
+    public void loadActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+
+    }/*
     public void mainpagelayoutButton(View view){
         setContentView(R.layout.activity_mainpage);
-    }
+    }*/
 }
