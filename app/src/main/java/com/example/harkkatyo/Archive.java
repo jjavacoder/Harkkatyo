@@ -22,8 +22,9 @@ public class Archive extends AppCompatActivity {
 
         //Archive list
         listView = findViewById(R.id.movieList);
+
         //connect data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(Archive.this, android.R.layout.simple_expandable_list_item_1, movies2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Archive.this, R.layout.changecolor, movies2);
         //create listview obj
         listView.setAdapter(adapter);
 
