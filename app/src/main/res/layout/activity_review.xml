@@ -8,21 +8,20 @@
     android:background="@color/black">
 
 
-<Button
-    android:id="@+id/button4"
-    android:layout_width="90dp"
-    android:layout_height="51dp"
-    android:backgroundTint="#FFEB3B"
-    android:onClick="archivelayoutButton"
-    android:text="@string/back_b"
-    android:textColor="#050404"
-    android:textSize="14sp"
-    app:layout_constraintBottom_toBottomOf="@+id/submitButton"
-    app:layout_constraintEnd_toStartOf="@+id/submitButton"
-    app:layout_constraintHorizontal_bias="0.44"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/submitButton"
-    app:layout_constraintVertical_bias="0.90999997" />
+    <Button
+        android:id="@+id/buttonrb4"
+        android:layout_width="90dp"
+        android:layout_height="51dp"
+        android:backgroundTint="#FFEB3B"
+        android:text="@string/back_b"
+        android:textColor="#050404"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/submitButton"
+        app:layout_constraintEnd_toStartOf="@+id/submitButton"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/submitButton"
+        app:layout_constraintVertical_bias="0.90999997" />
 
 <TextView
     android:id="@+id/textView"
