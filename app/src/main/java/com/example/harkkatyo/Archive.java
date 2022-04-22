@@ -34,8 +34,10 @@ public class Archive extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //show clicked message
                 Toast.makeText(Archive.this, "You clicked" +movies2[position],Toast.LENGTH_SHORT).show();
+                loadReview(movies2[position]);
             }
         });
+
         Button bt2 = findViewById(R.id.buttonab);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +54,11 @@ public class Archive extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+    public void loadReview(String moviename){
+        Intent intent = new Intent(this, Review.class);
+        intent.putExtra("key", moviename);
+        startActivity(intent);
     }
 
     }

@@ -10,18 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
+    TextView movieName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+        //String moviename1 = getIntent().getStringExtra("key");
+        //movieName.setText(moviename1);
 
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
