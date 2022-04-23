@@ -17,15 +17,20 @@ import java.util.Calendar;
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
-    TextView movieName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        //String moviename1 = getIntent().getStringExtra("key");
-        //movieName.setText(moviename1);
+
+        TextView Display = findViewById(R.id.movieName);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String moviename1 = extras.getString("key");
+            Display.setText(String.valueOf(moviename1));
+        }
+
 
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
