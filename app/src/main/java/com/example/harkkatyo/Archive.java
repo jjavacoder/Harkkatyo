@@ -38,9 +38,14 @@ public class Archive extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //show clicked message
-                Toast.makeText(Archive.this, "You clicked" + movies.get(position),Toast.LENGTH_SHORT).show();
-                loadReview(movies.get(position));
+                //show clicked movie
+                Toast.makeText(Archive.this, "You clicked " + movies.get(position),Toast.LENGTH_SHORT).show();
+                //Takes you to review movie
+                String moviename = movies.get(position);
+                Intent intent = new Intent(Archive.this, Review.class);
+                intent.putExtra("key", moviename);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -61,12 +66,6 @@ public class Archive extends AppCompatActivity {
 
 
     }
-    public void loadReview(String moviename){
-        Intent intent = new Intent(this, Review.class);
-        intent.putExtra("key", moviename);
-        startActivity(intent);
-    }
-
     }
     /*public void mainpagelayoutButton(View view){
         setContentView(R.layout.activity_mainpage);
