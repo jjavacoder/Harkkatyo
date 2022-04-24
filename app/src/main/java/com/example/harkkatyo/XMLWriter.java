@@ -20,27 +20,32 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class XMLWriter {
 
-    public void writeMovies(ArrayList<String> movies, Context context){
-        OutputStreamWriter osw = null;
-        //int j = 0;
-
-
-
+    public void writeMovies(ArrayList<String> movies){
+        File path = App.getContext().getFilesDir();
+        ArrayList<String> movies2 = new ArrayList<>();
+        Context context;
+        int j = 0;
         try{
-            osw = new OutputStreamWriter(context.openFileOutput("movies.txt", Context.MODE_APPEND));
+            context = App.getContext();
             System.out.println("KOKO: " + movies.size());
+            FileOutputStream writer = new FileOutputStream(new File(path, "movies.xml"), true);
+            writer.write("<Movies>\n".getBytes());
             for(int i = 0; i < movies.size(); i++) {
                 System.out.println("ELOKUVA: " + movies.get(i));
-                int j = checkIfInList(context, movies.get(i));
+                //int j = checkIfInList(context, movies.get(i));
                 if(j == 0) {
                     System.out.println("KIRJOITTAA TIEDOSTOA");
-                    String info = "<Movie>\n\t<name>" + movies.get(i) + "</name>\n</Movie>\n";
-                    osw.write(info);
+                    String info = "\t<Movie>\n\t\t<name>" + movies.get(i) + "</name>\n\t</Movie>\n";
+                    info = info.replaceAll("&","&amp;");
+                    writer.write(info.getBytes());
 
-                    System.out.println("KANSION SIJAINTI: " + context.getFilesDir());
+                    System.out.println("Kansion sijainti: " + path);
+
                 }
             }
-            osw.close();
+            writer.write("</Movies>".getBytes());
+            writer.close();
+
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -48,8 +53,10 @@ public class XMLWriter {
 
     public int checkIfInList(Context context, String movieName){
         InputStream ins = null;
+        String remove = "</Movies>";
+        int k = 0;
         try {
-            ins = context.openFileInput("movies.txt");
+            ins = context.openFileInput("movies.xml");
             System.out.println("KANSION SIJAINTI: " + context.getFilesDir());
             DocumentBuilder docB = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document xmlDoc = docB.parse(ins);
@@ -58,6 +65,9 @@ public class XMLWriter {
                 return 1;
             }
             else
+                if(k == 0){
+
+            }
                 return 0;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -24,10 +24,16 @@ public class Archive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-        context = Archive.this;
+        String fileName = "movies.xml";
 
-        XMLReaderExternal reader = new XMLReaderExternal();
-        ArrayList<String> movies = reader.read(URL, context);
+
+        //reading Finnkinos XML file
+        XMLReaderExternal readerE = new XMLReaderExternal();
+        readerE.read(URL);
+
+        //reading internal XML file
+        XMLReaderInternal readerI = new XMLReaderInternal();
+        ArrayList<String> movies = readerI.read(fileName);
 
 
 

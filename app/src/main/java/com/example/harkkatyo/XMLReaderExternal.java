@@ -19,10 +19,12 @@ import javax.xml.parsers.ParserConfigurationException;
 public class XMLReaderExternal {
     XMLWriter writer = new XMLWriter();
     ArrayList<String> movies = new ArrayList<>();
+    Context context;
 
 
-    public ArrayList read(String URL, Context context) {
+    public void read(String URL) {
         try {
+            context = App.getContext();
             //give permissions
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -43,7 +45,7 @@ public class XMLReaderExternal {
 
                 }
             }
-            writer.writeMovies(movies, context);
+            writer.writeMovies(movies);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -51,6 +53,5 @@ public class XMLReaderExternal {
         } catch (ParserConfigurationException parserConfigurationException) {
             parserConfigurationException.printStackTrace();
         }
-    return movies;
     }
 }
