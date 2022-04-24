@@ -22,19 +22,19 @@ public class XMLWriter {
 
     public void writeMovies(ArrayList<String> movies, Context context){
         OutputStreamWriter osw = null;
-        int j = 0;
+        //int j = 0;
 
 
 
         try{
-            osw = new OutputStreamWriter(context.openFileOutput("moviess.txt", Context.MODE_APPEND));
+            osw = new OutputStreamWriter(context.openFileOutput("movies.txt", Context.MODE_APPEND));
             System.out.println("KOKO: " + movies.size());
             for(int i = 0; i < movies.size(); i++) {
                 System.out.println("ELOKUVA: " + movies.get(i));
-                //int j = checkIfInList(context, movies.get(i));
+                int j = checkIfInList(context, movies.get(i));
                 if(j == 0) {
                     System.out.println("KIRJOITTAA TIEDOSTOA");
-                    String info = "<Movie>\n\t" + movies.get(i) + "\n</Movie>\n";
+                    String info = "<Movie>\n\t<name>" + movies.get(i) + "</name>\n</Movie>\n";
                     osw.write(info);
 
                     System.out.println("KANSION SIJAINTI: " + context.getFilesDir());
@@ -49,7 +49,7 @@ public class XMLWriter {
     public int checkIfInList(Context context, String movieName){
         InputStream ins = null;
         try {
-            ins = context.openFileInput("moviess.txt");
+            ins = context.openFileInput("movies.txt");
             System.out.println("KANSION SIJAINTI: " + context.getFilesDir());
             DocumentBuilder docB = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document xmlDoc = docB.parse(ins);
