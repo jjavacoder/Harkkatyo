@@ -22,7 +22,6 @@ public class XMLWriter {
 
     public void writeMovies(ArrayList<String> movies){
         File path = App.getContext().getFilesDir();
-        ArrayList<String> movies2 = new ArrayList<>();
         Context context;
         int j = 0;
         try{
