@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -17,6 +19,8 @@ import java.util.Calendar;
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
+    private Button submitbutton;
+    EditText reviewText;
 
 
     @Override
@@ -24,14 +28,30 @@ public class Review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
+        final RatingBar ratingbar = findViewById(R.id.ratingBar);
+        submitbutton = findViewById(R.id.submitButton);
+        reviewText = (EditText) findViewById(R.id.writeReview);
+
+
+        //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            String moviename1 = extras.getString("key");
-            Display.setText(String.valueOf(moviename1));
+            String moviename = extras.getString("key");
+            Display.setText(String.valueOf(moviename));
         }
 
+        //click event on submit button
+        submitbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                float totalStarts = ratingbar.getRating();
+                String textReview = reviewText.getText().toString();
 
+                System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
+
+            }
+        });
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
 
