@@ -8,6 +8,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,35 +20,35 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class XMLReaderInternal {
 
-    public ArrayList <String> read(String fileName){
+    public ArrayList <String> read(String filePath){
         Context context;
         ArrayList<String> movies = new ArrayList<>();
-        try {
-            context = App.getContext();
-            InputStream ins = context.openFileInput(fileName);
-            DocumentBuilder docB = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document xmlDoc = docB.parse(ins);
-            NodeList nList = xmlDoc.getDocumentElement().getElementsByTagName("Movie");
-            System.out.println("LISTAN KOKO: " + nList.getLength());
 
-            for (int i = 0; i < nList.getLength(); i++) {
-                Node node = nList.item(i);
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try{
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(filePath));
+
+
+            //get <name>
+
+            NodeList list = doc.getElementsByTagName("movie");
+            System.out.println("NODELIST LENGTH: " + list.getLength());
+
+            for (int temp = 0; temp < list.getLength(); temp++) {
+
+                Node node = list.item(temp);
+
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
+
                     Element element = (Element) node;
                     String name = element.getElementsByTagName("name").item(0).getTextContent();
                     movies.add(name);
+                    System.out.println(name);
                 }
-
-                //String date = xmlDoc.getElementsByTagName("date").item(0).getTextContent();
-                //String review = xmlDoc.getElementsByTagName("review").item(0).getTextContent();
-                //String stars = xmlDoc.getElementsByTagName("stars").item(0).getTextContent();
-
-
-                //System.out.println("PVM: " + date);
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (IOException e) {

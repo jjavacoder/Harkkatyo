@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Archive extends AppCompatActivity {
@@ -19,12 +20,13 @@ public class Archive extends AppCompatActivity {
     String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
     Context context;
+    File path = App.getContext().getFilesDir();
+    String filePath = path + "/movies.xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-        String fileName = "movies.xml";
 
 
         //reading Finnkinos XML file
@@ -33,7 +35,7 @@ public class Archive extends AppCompatActivity {
 
         //reading internal XML file
         XMLReaderInternal readerI = new XMLReaderInternal();
-        ArrayList<String> movies = readerI.read(fileName);
+        ArrayList<String> movies = readerI.read(filePath);
 
 
 
