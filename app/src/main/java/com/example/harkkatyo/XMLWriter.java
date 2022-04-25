@@ -3,6 +3,7 @@ package com.example.harkkatyo;
 import android.content.Context;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -17,15 +18,62 @@ import java.util.Date;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 public class XMLWriter {
+
+    public void write(ArrayList<String> movies){
+        File path = App.getContext().getFilesDir();
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+            //root elements
+            Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("movies");
+            doc.appendChild(rootElement);
+
+            Element name = doc.createElement("name");
+            //rootElement.appendChild(name);
+
+            name.setTextContent("007 James Bond");
+            rootElement.appendChild(name);
+
+            FileOutputStream output = new FileOutputStream(path);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            //pretty print XML
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(output);
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException parserConfigurationException) {
+            parserConfigurationException.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void writeMovies(ArrayList<String> movies){
         File path = App.getContext().getFilesDir();
         Context context;
         int j = 0;
         try{
-            context = App.getContext();
+
             System.out.println("KOKO: " + movies.size());
             FileOutputStream writer = new FileOutputStream(new File(path, "movies.xml"), true);
             writer.write("<Movies>\n".getBytes());
