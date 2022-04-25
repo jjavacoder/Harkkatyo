@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.backend;
 
 
 public class Movie {

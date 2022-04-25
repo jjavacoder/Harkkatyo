@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.frontend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.harkkatyo.R;
+import com.example.harkkatyo.backend.App;
+import com.example.harkkatyo.backend.XMLReaderExternal;
+import com.example.harkkatyo.backend.XMLReaderInternal;
 
 import java.io.File;
 import java.util.ArrayList;

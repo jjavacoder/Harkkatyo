@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.backend;
 
 import android.app.Application;
 import android.content.Context;

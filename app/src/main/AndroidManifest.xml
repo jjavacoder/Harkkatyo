@@ -9,21 +9,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.example.harkkatyo.App"
+        android:name="com.example.harkkatyo.backend.App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Harkkatyo" >
         <activity
-            android:name=".Reviews"
+            android:name=".frontend.Reviews"
             android:exported="false" />
         <activity
-            android:name=".Archive"
+            android:name=".frontend.Archive"
             android:exported="false" />
         <activity
-            android:name=".Review"
+            android:name=".frontend.Review"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".frontend.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

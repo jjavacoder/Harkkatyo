@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.frontend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.harkkatyo.R;
 
 import java.util.Calendar;
 
@@ -49,7 +51,7 @@ public class Review extends AppCompatActivity {
                 String textReview = reviewText.getText().toString();
 
                 System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
-
+                //ReviewHandler.addReview(totalStarts,textReview);
             }
         });
         initDatePicker();

@@ -1,6 +1,4 @@
-package com.example.harkkatyo;
-
-import android.content.Context;
+package com.example.harkkatyo.backend;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,9 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,8 +26,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class XMLWriter {
+    private static final String ELEMENT_NAME = "name";
 
-    public void writeMovies(ArrayList<String> movies){
+    public void writeMovies(ArrayList<String> movies) {
         File path = App.getContext().getFilesDir();
         String filePath = path + "/movies.xml";
         System.out.println("OSOITE: " + path);
@@ -40,51 +37,50 @@ public class XMLWriter {
 
         if (file.exists()) {
             System.out.println("Tiedosto on olemassa");
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            NodeList list = null;
+            Document doc = null;
+            try {
+                InputStream is = new FileInputStream(filePath);
+                DocumentBuilder db = docFactory.newDocumentBuilder();
+                doc = db.parse(is);
+                list = doc.getElementsByTagName(ELEMENT_NAME);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
+            }
 
             for (int i = 0; i < movies.size(); i++) {
-                int l = 0;
-                //check if the movie is already in the xml file
-                //if movie is in the list the method returns 1 and if it's not it returns 0
-                int number = checkIfInList(filePath, movies.get(i));
-                if (number == 0) {
-                    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                    try {
-                        InputStream is = new FileInputStream(filePath);
-                        DocumentBuilder db = docFactory.newDocumentBuilder();
-                        Document doc = db.parse(is);
-                        NodeList list = doc.getElementsByTagName("name");
-                        for (int j = 0; i < list.getLength(); i++) {
-                            Node node = list.item(j);
-                            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                                System.out.println("EKA IF");
-                                if (movies.get(i).equalsIgnoreCase(node.getNodeName())) {
-                                    System.out.println("TOKA IF");
-                                    break;
-                                } else {
-                                    System.out.println("ELSE");
-                                    Element name = doc.createElement("name");
-                                    //rootElement.appendChild(name);
-
-                                    name.setTextContent(movies.get(i));
-                                    //rootElement.appendChild(name);
-                                }
-
-                            }
-                        }
-
-                        } catch(FileNotFoundException e){
-                            e.printStackTrace();
-                        } catch(ParserConfigurationException e){
-                            e.printStackTrace();
-                        } catch(IOException e){
-                            e.printStackTrace();
-                        } catch(SAXException e){
-                            e.printStackTrace();
+                String movieName = movies.get(i);
+                boolean exists = false;
+                for (int j = 0; i < list.getLength(); i++) {
+                    Node node = list.item(j);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        System.out.println("EKA IF");
+                        if (movieName.equalsIgnoreCase(node.getNodeName())) {
+                            System.out.println("TOKA IF");
+                            exists = true;
+                            break;
                         }
                     }
+                }
 
+                if (!exists) {
+                    System.out.println("ELSE");
+                    Element name = doc.createElement(ELEMENT_NAME);
+                    //rootElement.appendChild(name);
+
+                    name.setTextContent(movieName);
+                    //rootElement.appendChild(name);
                 }
             }
+            write(filePath, doc);
+        }
         else{
             System.out.println("Tiedosto ei ole olemassa");
                 try {
@@ -141,31 +137,6 @@ public class XMLWriter {
         }
 
 
-    }
-    public int checkIfInList(String filePath, String movieName){
-        int k = 0;
-        try {
-            InputStream is = new FileInputStream(filePath);
-            DocumentBuilder docB = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document xmlDoc = docB.parse(is);
-            /*String name = xmlDoc.getElementsByTagName("name").item(0).getTextContent();
-            if(name.equals(movieName)){
-                return 1;
-            }
-            else
-                return 0;*/
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }
-
-
-        return 1;
     }
 
     /*public void writeReviews(){

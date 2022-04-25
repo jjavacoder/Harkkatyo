@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.backend;
 
 import android.content.Context;
 
@@ -21,7 +21,6 @@ import javax.xml.parsers.ParserConfigurationException;
 public class XMLReaderInternal {
 
     public ArrayList <String> read(String filePath){
-        Context context;
         ArrayList<String> movies = new ArrayList<>();
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

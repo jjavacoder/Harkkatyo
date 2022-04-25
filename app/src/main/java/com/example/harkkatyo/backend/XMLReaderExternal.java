@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.backend;
 
 import android.content.Context;
 import android.os.StrictMode;

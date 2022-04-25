@@ -1,4 +1,4 @@
-package com.example.harkkatyo;
+package com.example.harkkatyo.frontend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.example.harkkatyo.R;
 
 public class Reviews extends AppCompatActivity {
 
