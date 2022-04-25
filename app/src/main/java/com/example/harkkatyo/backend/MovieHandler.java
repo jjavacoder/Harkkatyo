@@ -25,14 +25,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class XMLWriter {
+public class MovieHandler {
     private static final String ELEMENT_NAME = "name";
+    File path = App.getContext().getFilesDir();
+    String filePath = path + "/movies.xml";
 
-    public void writeMovies(ArrayList<String> movies) {
-        File path = App.getContext().getFilesDir();
-        String filePath = path + "/movies.xml";
+    public void addMovie(ArrayList<String> movies) {
         System.out.println("OSOITE: " + path);
-        int k = 0;
         File file = new File(filePath);
 
         if (file.exists()) {
@@ -79,41 +78,47 @@ public class XMLWriter {
                     //rootElement.appendChild(name);
                 }
             }
-            write(filePath, doc);
-        }
-        else{
+            writeXMLFile(filePath, doc);
+        } else {
             System.out.println("Tiedosto ei ole olemassa");
-                try {
-                    DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-                    DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            try {
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-                    //root elements
-                    Document doc = docBuilder.newDocument();
-                    Element rootElement = doc.createElement("movies");
-                    doc.appendChild(rootElement);
+                //root elements
+                Document doc = docBuilder.newDocument();
+                Element rootElement = doc.createElement("movies");
+                doc.appendChild(rootElement);
 
+                //making elements of all movies
+                for (int i = 0; i < movies.size(); i++) {
+                    Element movie = doc.createElement("movie");
+                    rootElement.appendChild(movie);
 
-                    for(int i = 0;i< movies.size();i++) {
-                        Element movie = doc.createElement("movie");
-                        rootElement.appendChild(movie);
+                    Element name = doc.createElement("name");
 
-
-                        Element name = doc.createElement("name");
-
-                        name.setTextContent(movies.get(i));
-                        movie.appendChild(name);
-                    }
-                    write(filePath, doc);
-
-                } catch (ParserConfigurationException e) {
-                    e.printStackTrace();
+                    name.setTextContent(movies.get(i));
+                    movie.appendChild(name);
                 }
+                writeXMLFile(filePath, doc);
 
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
             }
+
         }
+    }
+    public ArrayList<String> getArrayList(){
+        XMLReaderExternal reader = new XMLReaderExternal();
+        ArrayList<String> moviesToXML = reader.read();
+        addMovie(moviesToXML);
+        ArrayList<String> movies = getMovies();
+        return movies;
+    }
 
 
-    public void write(String filePath, Document doc){
+
+    public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         try {
             output = new FileOutputStream(filePath);
@@ -136,23 +141,40 @@ public class XMLWriter {
             e.printStackTrace();
         }
 
-
     }
 
-    /*public void writeReviews(){
-        OutputStreamWriter osw = null;
-        String info ="<Reviews>\n" +
-                "   <name>" + name + "</name>\n" +
-                "   <date>" + date + "</date>\n" +
-                "   <review>" + review + "</review>\n" +
-                "   <stars>" + stars + "</stars>\n" +
-                "</Reviews>\n";
-        try{
-            osw = new OutputStreamWriter(context.openFileOutput("reviews.txt", Context.MODE_APPEND));
-            osw.write(info);
-            osw.close();
-        }catch (IOException e){
+    public ArrayList <String> getMovies() {
+        ArrayList<String> movies = new ArrayList<>();
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(filePath));
+            NodeList list = doc.getElementsByTagName("movie");
+            System.out.println("NODELIST LENGTH: " + list.getLength());
+
+            for (int temp = 0; temp < list.getLength(); temp++) {
+
+                Node node = list.item(temp);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element element = (Element) node;
+                    String name = element.getElementsByTagName("name").item(0).getTextContent();
+                    movies.add(name);
+                    System.out.println(name);
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
             e.printStackTrace();
         }
-    }*/
+        return movies;
+    }
 }
+

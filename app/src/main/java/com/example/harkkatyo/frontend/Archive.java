@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.App;
+import com.example.harkkatyo.backend.MovieHandler;
 import com.example.harkkatyo.backend.XMLReaderExternal;
 import com.example.harkkatyo.backend.XMLReaderInternal;
 
@@ -21,12 +22,13 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Archive extends AppCompatActivity {
-    String URL = "https://www.finnkino.fi/xml/Events/";
+
     String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
     Context context;
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
+    MovieHandler movieHandler = new MovieHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +36,8 @@ public class Archive extends AppCompatActivity {
         setContentView(R.layout.activity_archive);
 
 
-        //reading Finnkinos XML file
-        XMLReaderExternal readerE = new XMLReaderExternal();
-        readerE.read(URL);
 
-        //reading internal XML file
-        XMLReaderInternal readerI = new XMLReaderInternal();
-        ArrayList<String> movies = readerI.read(filePath);
-
-
+        ArrayList<String> movies = movieHandler.getArrayList();
 
         //Archive list
         listView = findViewById(R.id.movieList);
