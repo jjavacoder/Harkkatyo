@@ -18,7 +18,7 @@ import java.util.Calendar;
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
-    RatingBar ratingbar;
+    private Button submitbutton;
 
 
     @Override
@@ -26,8 +26,20 @@ public class Review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        ratingbar = findViewById(R.id.ratingBar);
+        //initiate star rating and submit button
+        final RatingBar ratingbar = findViewById(R.id.ratingBar);
+        submitbutton = findViewById(R.id.submitButton);
+        //click event on submit button
+        submitbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                float totalStarts = ratingbar.getRating();
+                System.out.println(totalStarts); //Testausta varten, poistetaan lopullisesta työstä!
 
+            }
+        });
+
+        //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
         Bundle extras = getIntent().getExtras();
         if(extras != null){
