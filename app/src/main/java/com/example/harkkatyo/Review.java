@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -17,12 +18,15 @@ import java.util.Calendar;
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
+    RatingBar ratingbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        ratingbar = findViewById(R.id.ratingBar);
 
         TextView Display = findViewById(R.id.movieName);
         Bundle extras = getIntent().getExtras();
