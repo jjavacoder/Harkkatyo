@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,6 +20,7 @@ public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
     private Button submitbutton;
+    EditText reviewText;
 
 
     @Override
@@ -26,28 +28,30 @@ public class Review extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        //initiate star rating and submit button
         final RatingBar ratingbar = findViewById(R.id.ratingBar);
         submitbutton = findViewById(R.id.submitButton);
-        //click event on submit button
-        submitbutton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                float totalStarts = ratingbar.getRating();
-                System.out.println(totalStarts); //Testausta varten, poistetaan lopullisesta työstä!
+        reviewText = (EditText) findViewById(R.id.writeReview);
 
-            }
-        });
 
         //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            String moviename1 = extras.getString("key");
-            Display.setText(String.valueOf(moviename1));
+            String moviename = extras.getString("key");
+            Display.setText(String.valueOf(moviename));
         }
 
+        //click event on submit button
+        submitbutton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                float totalStarts = ratingbar.getRating();
+                String textReview = reviewText.getText().toString();
 
+                System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
+
+            }
+        });
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
 
