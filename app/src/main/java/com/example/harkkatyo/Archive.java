@@ -2,6 +2,7 @@ package com.example.harkkatyo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,13 +18,23 @@ public class Archive extends AppCompatActivity {
     String URL = "https://www.finnkino.fi/xml/Events/";
     String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-        XMLReaderExternal reader = new XMLReaderExternal();
-        ArrayList<String> movies = reader.read(URL);
+        String fileName = "movies.xml";
+
+
+        //reading Finnkinos XML file
+        XMLReaderExternal readerE = new XMLReaderExternal();
+        readerE.read(URL);
+
+        //reading internal XML file
+        XMLReaderInternal readerI = new XMLReaderInternal();
+        ArrayList<String> movies = readerI.read(fileName);
+
 
 
         //Archive list
