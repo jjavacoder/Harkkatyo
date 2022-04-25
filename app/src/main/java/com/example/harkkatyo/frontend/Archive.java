@@ -16,7 +16,6 @@ import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.App;
 import com.example.harkkatyo.backend.MovieHandler;
 import com.example.harkkatyo.backend.XMLReaderExternal;
-import com.example.harkkatyo.backend.XMLReaderInternal;
 
 import java.io.File;
 import java.util.ArrayList;
