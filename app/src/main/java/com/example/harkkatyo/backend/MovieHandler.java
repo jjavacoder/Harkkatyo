@@ -115,6 +115,7 @@ public class MovieHandler {
         ArrayList<String> moviesToXML = reader.read();
         addMovie(moviesToXML);
         ArrayList<String> movies = getMovies();
+        System.out.println("moi");
         return movies;
     }
 
