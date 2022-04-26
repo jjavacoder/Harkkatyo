@@ -4,24 +4,35 @@ package com.example.harkkatyo.backend;
 import java.util.Date;
 
 public class Review {
-    String name;
-    Date date;
+    String movieName;
+    String date;
     String text;
     float stars;
 
 
 
-    public Review(String name, Date date, String text, float stars){
+    public Review(String movieName, String date, String text, float stars){
 
-        this.name = name;
+        this.movieName = movieName;
         this.date = date;
         this.text = text;
         this.stars = stars;
     }
 
-    public String getName(){
-        return name;
+    public String getMovieName(){
+        return movieName;
     }
+
+    public String getDate(){
+        return date;
+    }
+    public String getText(){
+        return text;
+    }
+    public float getStars(){
+        return stars;
+    }
+
 
 
 

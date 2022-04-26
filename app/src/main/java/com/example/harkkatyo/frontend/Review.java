@@ -15,8 +15,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.harkkatyo.R;
+import com.example.harkkatyo.backend.ReviewHandler;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Review extends AppCompatActivity {
     private DatePickerDialog datePicker;
@@ -34,6 +36,13 @@ public class Review extends AppCompatActivity {
         submitbutton = findViewById(R.id.submitButton);
         reviewText = (EditText) findViewById(R.id.writeReview);
 
+        String name = "James Bond";
+        String date = "20.02.2021";
+        String text = "Bad movie";
+        float stars = (float) 1.2;
+
+        ReviewHandler reviewHandler = new ReviewHandler();
+        reviewHandler.addReview(name, date, text, stars);
 
         //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
@@ -51,7 +60,6 @@ public class Review extends AppCompatActivity {
                 String textReview = reviewText.getText().toString();
 
                 System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
-                //ReviewHandler.addReview(totalStarts,textReview);
             }
         });
         initDatePicker();
