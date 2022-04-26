@@ -1,14 +1,20 @@
 package com.example.harkkatyo.frontend;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,19 +28,19 @@ import java.util.ArrayList;
 
 public class Archive extends AppCompatActivity {
 
-    String[] movies2 = {"oubfkb", "gg", "jghv"};
     ListView listView;
     Context context;
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
     MovieHandler movieHandler = new MovieHandler();
+    private ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
 
-
+        EditText searchmovie = (EditText) findViewById(R.id.search);
 
         ArrayList<String> movies = movieHandler.getArrayList();
 
@@ -42,9 +48,27 @@ public class Archive extends AppCompatActivity {
         listView = findViewById(R.id.movieList);
 
         //connect data
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(Archive.this, R.layout.changecolor, movies);
+        adapter = new ArrayAdapter<>(Archive.this, R.layout.changecolor, movies);
         //create listview obj
         listView.setAdapter(adapter);
+
+        //Search function
+        searchmovie.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                (Archive.this).adapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         //Item clicked event
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
