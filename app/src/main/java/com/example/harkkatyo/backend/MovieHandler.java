@@ -1,5 +1,7 @@
 package com.example.harkkatyo.backend;
 
+import android.content.Context;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -113,6 +115,7 @@ public class MovieHandler {
         ArrayList<String> moviesToXML = reader.read();
         addMovie(moviesToXML);
         ArrayList<String> movies = getMovies();
+        System.out.println("moi");
         return movies;
     }
 
@@ -120,8 +123,10 @@ public class MovieHandler {
 
     public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
+        Context context = App.getContext();
         try {
-            output = new FileOutputStream(filePath);
+            //output = new FileOutputStream(filePath);
+            output = context.openFileOutput("movies.xml",context.MODE_PRIVATE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = null;
             transformer = transformerFactory.newTransformer();
