@@ -50,6 +50,7 @@ public class Review extends AppCompatActivity {
                 float totalStarts = ratingbar.getRating();
                 String textReview = reviewText.getText().toString();
 
+
                 System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
                 //ReviewHandler.addReview(totalStarts,textReview);
             }
