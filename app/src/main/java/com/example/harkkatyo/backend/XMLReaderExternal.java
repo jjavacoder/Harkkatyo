@@ -17,12 +17,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class XMLReaderExternal {
-    XMLWriter writer = new XMLWriter();
+    MovieHandler writer = new MovieHandler();
     ArrayList<String> movies = new ArrayList<>();
     Context context;
+    String URL = "https://www.finnkino.fi/xml/Events/";
 
 
-    public void read(String URL) {
+    public ArrayList<String> read() {
         try {
             context = App.getContext();
             //give permissions
@@ -45,7 +46,6 @@ public class XMLReaderExternal {
 
                 }
             }
-            writer.writeMovies(movies);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {
@@ -53,5 +53,6 @@ public class XMLReaderExternal {
         } catch (ParserConfigurationException parserConfigurationException) {
             parserConfigurationException.printStackTrace();
         }
+        return movies;
     }
 }

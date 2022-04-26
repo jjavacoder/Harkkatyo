@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.harkkatyo.R;
+import com.example.harkkatyo.backend.Review;
+import com.example.harkkatyo.backend.ReviewHandler;
+
+import java.util.ArrayList;
 
 public class Reviews extends AppCompatActivity {
 
@@ -24,6 +28,13 @@ public class Reviews extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.sortnames));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
+
+        ReviewHandler reviewHandler = new ReviewHandler();
+        ArrayList<Review> reviews = reviewHandler.getReviews();
+        System.out.println(reviews.get(0).getMovieName());
+        System.out.println(reviews.get(0).getDate());
+        System.out.println(reviews.get(0).getText());
+        System.out.println(reviews.get(0).getStars());
 
         Button bt2 = findViewById(R.id.buttonrb);
         bt2.setOnClickListener(new View.OnClickListener() {
