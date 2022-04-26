@@ -133,9 +133,10 @@ public class ReviewHandler {
                     String text = element.getElementsByTagName("text").item(0).getTextContent();
                     String starsString = element.getElementsByTagName("stars").item(0).getTextContent();
                     float stars = Float.parseFloat(starsString);
+                    System.out.println("Review: " + name + date);
                     Review review = new Review(name, date, text, stars);
                     reviews.add(review);
-                    System.out.println(name);
+
                 }
             }
 
