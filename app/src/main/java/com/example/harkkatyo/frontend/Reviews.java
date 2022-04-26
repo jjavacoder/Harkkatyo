@@ -35,6 +35,7 @@ public class Reviews extends AppCompatActivity {
         System.out.println(reviews.get(0).getDate());
         System.out.println(reviews.get(0).getText());
         System.out.println(reviews.get(0).getStars());
+        System.out.println("moi");
 
         Button bt2 = findViewById(R.id.buttonrb);
         bt2.setOnClickListener(new View.OnClickListener() {
