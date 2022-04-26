@@ -1,5 +1,7 @@
 package com.example.harkkatyo.backend;
 
+import android.content.Context;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -149,8 +151,9 @@ public class ReviewHandler {
 
     public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
+        Context context = App.getContext();
         try {
-            output = new FileOutputStream(filePath);
+            output = context.openFileOutput("reviews.xml",context.MODE_PRIVATE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = null;
             transformer = transformerFactory.newTransformer();
