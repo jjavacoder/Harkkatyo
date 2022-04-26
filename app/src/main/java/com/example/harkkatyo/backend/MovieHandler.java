@@ -72,11 +72,17 @@ public class MovieHandler {
                 //if doesn't exist yet -> set new movie
                 if (!exists) {
                     System.out.println("ELSE");
-                    Element name = doc.createElement(ELEMENT_NAME);
-                    //rootElement.appendChild(name);
+                    //searching root element
+                    Element moviesElement = (Element) doc.getElementsByTagName("Movies");
 
-                    name.setTextContent(movieName);
-                    //rootElement.appendChild(name);
+                    Element movieElement = doc.createElement("movie");
+                    moviesElement.appendChild(movieElement);
+
+                    Element nameElement = doc.createElement(ELEMENT_NAME);
+                    movieElement.appendChild(nameElement);
+
+                    nameElement.setTextContent(movieName);
+
                 }
             }
             writeXMLFile(filePath, doc);
