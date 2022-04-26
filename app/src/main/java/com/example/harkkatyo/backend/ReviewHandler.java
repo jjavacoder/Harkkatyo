@@ -109,9 +109,44 @@ public class ReviewHandler {
 
         }
     }
-    public static void getreview(String movieName) {
-        //read review from XML here
+    public ArrayList<Review> getReviews() {
+        ArrayList<Review> reviews = new ArrayList<>();
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(filePath));
+            NodeList list = doc.getElementsByTagName("review");
+
+            for (int temp = 0; temp < list.getLength(); temp++) {
+
+                Node node = list.item(temp);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element element = (Element) node;
+                    String name = element.getElementsByTagName("name").item(0).getTextContent();
+                    String date = element.getElementsByTagName("date").item(0).getTextContent();
+                    String text = element.getElementsByTagName("text").item(0).getTextContent();
+                    String starsString = element.getElementsByTagName("stars").item(0).getTextContent();
+                    float stars = Float.parseFloat(starsString);
+                    Review review = new Review(name, date, text, stars);
+                    reviews.add(review);
+                    System.out.println(name);
+                }
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+        return reviews;
     }
+
     public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         try {

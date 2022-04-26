@@ -65,7 +65,7 @@ public class Review extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
 
-        /*Button btrb4 = findViewById(R.id.buttonrb4); //Onclick designissa tyhjä
+        Button btrb4 = findViewById(R.id.buttonrb4);
         btrb4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +76,7 @@ public class Review extends AppCompatActivity {
     }
     public void loadActivity(){
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);*/
+        startActivity(intent);
 
 
     }
