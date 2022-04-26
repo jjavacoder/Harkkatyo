@@ -41,6 +41,7 @@ public class Review extends AppCompatActivity {
         String text = "Bad movie";
         float stars = (float) 1.2;
 
+        System.out.println("aktiviteetti reviewissä");
         ReviewHandler reviewHandler = new ReviewHandler();
         reviewHandler.addReview(name, date, text, stars);
 

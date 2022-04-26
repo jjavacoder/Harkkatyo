@@ -39,6 +39,7 @@ public class ReviewHandler {
     public void addReview(String movieName, String date, String text, float stars) {
         File file = new File(filePath);
         Review review = new Review(movieName, date, text, stars);
+        System.out.println("ReviewHandler, addreview");
 
         if (file.exists()) {
             System.out.println("Tiedosto on olemassa");
@@ -58,19 +59,26 @@ public class ReviewHandler {
             } catch (SAXException e) {
                 e.printStackTrace();
             }
+            //lisätäänkö? miten toimii, kun rootElement tehty aiemmin
+            //Element reviewElement = doc.createElement("review");
+            //rootElement.appendChild(reviewElement);
+
+
+            //setting name
             Element nameElement = doc.createElement(ELEMENT_NAME);
             nameElement.setTextContent(review.getMovieName());
 
+            //setting date
             Element dateElement = doc.createElement(ELEMENT_DATE);
             dateElement.setTextContent(review.getDate());
 
+            //setting text
             Element textElement = doc.createElement(ELEMENT_TEXT);
             textElement.setTextContent(review.getText());
 
+            //setting stars
             Element starsElement = doc.createElement(ELEMENT_STARS);
             starsElement.setTextContent(String.valueOf(review.getStars()));
-
-
 
             writeXMLFile(filePath, doc);
         } else {
@@ -87,18 +95,22 @@ public class ReviewHandler {
                 Element reviewElement = doc.createElement("review");
                 rootElement.appendChild(reviewElement);
 
+                //setting name
                 Element nameElement = doc.createElement(ELEMENT_NAME);
                 nameElement.setTextContent(review.getMovieName());
                 reviewElement.appendChild(nameElement);
 
+                //setting date
                 Element dateElement = doc.createElement(ELEMENT_DATE);
                 dateElement.setTextContent(review.getDate());
                 reviewElement.appendChild(dateElement);
 
+                //setting text
                 Element textElement = doc.createElement(ELEMENT_TEXT);
                 textElement.setTextContent(review.getText());
                 reviewElement.appendChild(textElement);
 
+                //setting stars
                 Element starsElement = doc.createElement(ELEMENT_STARS);
                 starsElement.setTextContent(String.valueOf(review.getStars()));
                 reviewElement.appendChild(starsElement);
@@ -133,9 +145,10 @@ public class ReviewHandler {
                     String text = element.getElementsByTagName("text").item(0).getTextContent();
                     String starsString = element.getElementsByTagName("stars").item(0).getTextContent();
                     float stars = Float.parseFloat(starsString);
+                    System.out.println("Review: " + name + date);
                     Review review = new Review(name, date, text, stars);
                     reviews.add(review);
-                    System.out.println(name);
+
                 }
             }
 
