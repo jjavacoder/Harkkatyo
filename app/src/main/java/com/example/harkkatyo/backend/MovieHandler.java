@@ -62,15 +62,14 @@ public class MovieHandler {
                 for (int j = 0; i < list.getLength(); i++) {
                     Node node = list.item(j);
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        System.out.println("EKA IF");
+                        //check if already in xml file
                         if (movieName.equalsIgnoreCase(node.getNodeName())) {
-                            System.out.println("TOKA IF");
                             exists = true;
                             break;
                         }
                     }
                 }
-
+                //if doesn't exist yet -> set new movie
                 if (!exists) {
                     System.out.println("ELSE");
                     Element name = doc.createElement(ELEMENT_NAME);
@@ -87,18 +86,19 @@ public class MovieHandler {
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-                //root elements
+                //setting root element
                 Document doc = docBuilder.newDocument();
                 Element rootElement = doc.createElement("movies");
                 doc.appendChild(rootElement);
 
                 //making elements of all movies
                 for (int i = 0; i < movies.size(); i++) {
+                    //setting movie element
                     Element movie = doc.createElement("movie");
                     rootElement.appendChild(movie);
 
+                    //setting name element
                     Element name = doc.createElement("name");
-
                     name.setTextContent(movies.get(i));
                     movie.appendChild(name);
                 }
@@ -115,7 +115,6 @@ public class MovieHandler {
         ArrayList<String> moviesToXML = reader.read();
         addMovie(moviesToXML);
         ArrayList<String> movies = getMovies();
-        System.out.println("moi");
         return movies;
     }
 
@@ -125,7 +124,6 @@ public class MovieHandler {
         FileOutputStream output = null;
         Context context = App.getContext();
         try {
-            //output = new FileOutputStream(filePath);
             output = context.openFileOutput("movies.xml",context.MODE_PRIVATE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = null;
