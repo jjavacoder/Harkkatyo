@@ -64,7 +64,6 @@ public class Review extends AppCompatActivity {
                 String text = reviewText.getText().toString();
 
 
-                System.out.println("aktiviteetti reviewissä");
                 ReviewHandler reviewHandler = new ReviewHandler();
                 reviewHandler.addReview(name, date, text, stars);
 

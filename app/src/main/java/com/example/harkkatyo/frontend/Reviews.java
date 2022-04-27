@@ -74,8 +74,8 @@ public class Reviews extends AppCompatActivity {
         });
 
 
-        System.out.println(reviews.get(0).getMovieName());
-        System.out.println(reviews.get(0).getDate());
+        System.out.println("Movie name: " + reviews.get(0).getMovieName());
+        System.out.println("Date: " + reviews.get(0).getDate());
         System.out.println(reviews.get(0).getText());
         System.out.println(reviews.get(0).getStars());
 
