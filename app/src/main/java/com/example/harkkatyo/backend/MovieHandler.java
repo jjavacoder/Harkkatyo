@@ -34,6 +34,7 @@ public class MovieHandler {
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
 
+    //writes movies to XMl file if they are not yet there
     public void addMovie(ArrayList<String> movies) {
         File file = new File(filePath);
 
@@ -126,20 +127,17 @@ public class MovieHandler {
     }
 
     public ArrayList<String> getArrayList(){
-        //read Finnkino XML file
         XMLReaderExternal reader = new XMLReaderExternal();
         ArrayList<String> moviesToXML = reader.read();
-        //write movies to XML file if needed
         addMovie(moviesToXML);
-        //read all movies from XML file
         ArrayList<String> movies = getMovies();
         return movies;
     }
 
+    //writes document with elements to a file
     public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
-        //write doc to file
         try {
             output = context.openFileOutput("movies.xml",context.MODE_PRIVATE);
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -161,11 +159,11 @@ public class MovieHandler {
         }
     }
 
+    //reads XMl file and returns arraylist that includes movies
     public ArrayList <String> getMovies() {
         ArrayList<String> movies = new ArrayList<>();
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        //read movies from xml and add to movies arraylist
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new File(filePath));

@@ -21,8 +21,8 @@ public class XMLReaderExternal {
     Context context;
     String URL = "https://www.finnkino.fi/xml/Events/";
 
+    //reads Finnkino XMl file and returns arraylist that includes the movies
     public ArrayList<String> read() {
-        //read external XML file
         try {
             context = App.getContext();
             //give permissions

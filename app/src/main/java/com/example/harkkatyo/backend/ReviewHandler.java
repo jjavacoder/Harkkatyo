@@ -38,6 +38,7 @@ public class ReviewHandler {
     File path = App.getContext().getFilesDir();
     String filePath = path + "/reviews.xml";
 
+    //writes review to XML file
     public void addReview(String movieName, String date, String text, float stars) {
         File file = new File(filePath);
         Review review = new Review(movieName, date, text, stars);
@@ -132,6 +133,7 @@ public class ReviewHandler {
         }
     }
 
+    //reads XMl file and returns arraylist that includes reviews
     public ArrayList<Review> getReviews() {
         ArrayList<Review> reviews = new ArrayList<>();
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -166,6 +168,7 @@ public class ReviewHandler {
         return reviews;
     }
 
+    //writes document with elements to a file
     public void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
