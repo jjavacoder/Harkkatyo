@@ -29,17 +29,19 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class ReviewHandler {
-    private static final String ELEMENT_NAME = "name";
-    private static final String ELEMENT_DATE = "date";
-    private static final String ELEMENT_TEXT = "text";
-    private static final String ELEMENT_STARS = "stars";
+    private static final String ELEMENT_REVIEWS = "Reviews";
+    private static final String ELEMENT_REVIEW = "Review";
+    private static final String ELEMENT_NAME = "Name";
+    private static final String ELEMENT_DATE = "Date";
+    private static final String ELEMENT_TEXT = "Text";
+    private static final String ELEMENT_STARS = "Stars";
+
     File path = App.getContext().getFilesDir();
     String filePath = path + "/reviews.xml";
 
     public void addReview(String movieName, String date, String text, float stars) {
         File file = new File(filePath);
         Review review = new Review(movieName, date, text, stars);
-        System.out.println("ReviewHandler, addreview");
 
         if (file.exists()) {
             System.out.println("Tiedosto on olemassa");
@@ -59,25 +61,33 @@ public class ReviewHandler {
             } catch (SAXException e) {
                 e.printStackTrace();
             }
-            //lisätäänkö? miten toimii, kun rootElement tehty aiemmin
-            //Element reviewElement = doc.createElement("review");
-            //rootElement.appendChild(reviewElement);
+
+            NodeList nList = doc.getElementsByTagName(ELEMENT_REVIEWS);
+            Node node = nList.item(0);
+            Element reviewsElement = (Element) node;
+
+            Element reviewElement = doc.createElement(ELEMENT_REVIEW);
+            reviewsElement.appendChild(reviewElement);
 
 
             //setting name
             Element nameElement = doc.createElement(ELEMENT_NAME);
+            reviewElement.appendChild(nameElement);
             nameElement.setTextContent(review.getMovieName());
 
             //setting date
             Element dateElement = doc.createElement(ELEMENT_DATE);
+            reviewElement.appendChild(dateElement);
             dateElement.setTextContent(review.getDate());
 
             //setting text
             Element textElement = doc.createElement(ELEMENT_TEXT);
+            reviewElement.appendChild(textElement);
             textElement.setTextContent(review.getText());
 
             //setting stars
             Element starsElement = doc.createElement(ELEMENT_STARS);
+            reviewElement.appendChild(starsElement);
             starsElement.setTextContent(String.valueOf(review.getStars()));
 
             writeXMLFile(filePath, doc);
@@ -88,11 +98,11 @@ public class ReviewHandler {
 
                 //root elements
                 Document doc = docBuilder.newDocument();
-                Element rootElement = doc.createElement("Reviews");
+                Element rootElement = doc.createElement(ELEMENT_REVIEWS);
                 doc.appendChild(rootElement);
 
 
-                Element reviewElement = doc.createElement("review");
+                Element reviewElement = doc.createElement(ELEMENT_REVIEW);
                 rootElement.appendChild(reviewElement);
 
                 //setting name
@@ -131,7 +141,7 @@ public class ReviewHandler {
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new File(filePath));
-            NodeList list = doc.getElementsByTagName("review");
+            NodeList list = doc.getElementsByTagName(ELEMENT_REVIEW);
 
             for (int temp = 0; temp < list.getLength(); temp++) {
 
@@ -140,10 +150,10 @@ public class ReviewHandler {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element element = (Element) node;
-                    String name = element.getElementsByTagName("name").item(0).getTextContent();
-                    String date = element.getElementsByTagName("date").item(0).getTextContent();
-                    String text = element.getElementsByTagName("text").item(0).getTextContent();
-                    String starsString = element.getElementsByTagName("stars").item(0).getTextContent();
+                    String name = element.getElementsByTagName(ELEMENT_NAME).item(0).getTextContent();
+                    String date = element.getElementsByTagName(ELEMENT_DATE).item(0).getTextContent();
+                    String text = element.getElementsByTagName(ELEMENT_TEXT).item(0).getTextContent();
+                    String starsString = element.getElementsByTagName(ELEMENT_STARS).item(0).getTextContent();
                     float stars = Float.parseFloat(starsString);
                     System.out.println("Review: " + name + date);
                     Review review = new Review(name, date, text, stars);

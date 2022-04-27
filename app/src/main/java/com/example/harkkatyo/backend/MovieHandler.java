@@ -28,6 +28,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class MovieHandler {
+    private static final String ELEMENT_MOVIES = "Movies";
+    private static final String ELEMENT_MOVIE = "Movie";
     private static final String ELEMENT_NAME = "Name";
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
@@ -36,7 +38,7 @@ public class MovieHandler {
         File file = new File(filePath);
 
         if (file.exists()) {
-            System.out.println("Tiedosto on olemassa");
+            //System.out.println("Tiedosto on olemassa");
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             NodeList list = null;
             Document doc = null;
@@ -44,7 +46,7 @@ public class MovieHandler {
                 InputStream is = new FileInputStream(filePath);
                 DocumentBuilder db = docFactory.newDocumentBuilder();
                 doc = db.parse(is);
-                list = doc.getDocumentElement().getElementsByTagName("Movie");
+                list = doc.getDocumentElement().getElementsByTagName(ELEMENT_MOVIE);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (ParserConfigurationException e) {
@@ -64,10 +66,9 @@ public class MovieHandler {
                         //check if already in xml file
                         Element nameElement = (Element) node;
                         String nameFromXML = nameElement.getElementsByTagName(ELEMENT_NAME).item(0).getTextContent();
-                        System.out.println("movieName: " + movieName);
-                        System.out.println("nameFromXML: " + nameFromXML);
+                        //System.out.println("movieName: " + movieName);
+                        //System.out.println("nameFromXML: " + nameFromXML);
                         if (movieName.equalsIgnoreCase(nameFromXML)) {
-                            System.out.println("On olemassa jo");
                             exists = true;
                             break;
                         }
@@ -77,23 +78,22 @@ public class MovieHandler {
                 if (!exists) {
                     //System.out.println("Ei ole olemassa");
                     //searching root element
-                    NodeList nList = doc.getElementsByTagName("Movies");
+                    NodeList nList = doc.getElementsByTagName(ELEMENT_MOVIES);
                     Node node = nList.item(0);
                     Element moviesElement = (Element) node;
 
-                    Element movieElement = doc.createElement("Movie");
+                    Element movieElement = doc.createElement(ELEMENT_MOVIE);
                     moviesElement.appendChild(movieElement);
 
                     Element nameElement = doc.createElement(ELEMENT_NAME);
                     movieElement.appendChild(nameElement);
-
                     nameElement.setTextContent(movieName);
 
                 }
             }
             writeXMLFile(filePath, doc);
         } else {
-            System.out.println("Tiedosto ei ole olemassa");
+            //System.out.println("Tiedosto ei ole olemassa");
 
             try {
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -101,17 +101,17 @@ public class MovieHandler {
 
                 //setting root element
                 Document doc = docBuilder.newDocument();
-                Element rootElement = doc.createElement("Movies");
+                Element rootElement = doc.createElement(ELEMENT_MOVIES);
                 doc.appendChild(rootElement);
 
                 //making elements of all movies
                 for (int i = 0; i < movies.size(); i++) {
                     //setting movie element
-                    Element movie = doc.createElement("Movie");
+                    Element movie = doc.createElement(ELEMENT_MOVIE);
                     rootElement.appendChild(movie);
 
                     //setting name element
-                    Element name = doc.createElement("Name");
+                    Element name = doc.createElement(ELEMENT_NAME);
                     name.setTextContent(movies.get(i));
                     movie.appendChild(name);
                 }
@@ -167,8 +167,7 @@ public class MovieHandler {
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new File(filePath));
-            NodeList list = doc.getElementsByTagName("Movie");
-            System.out.println("NODELIST LENGTH: " + list.getLength());
+            NodeList list = doc.getElementsByTagName(ELEMENT_MOVIE);
 
             for (int temp = 0; temp < list.getLength(); temp++) {
 
@@ -177,7 +176,7 @@ public class MovieHandler {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element element = (Element) node;
-                    String name = element.getElementsByTagName("Name").item(0).getTextContent();
+                    String name = element.getElementsByTagName(ELEMENT_NAME).item(0).getTextContent();
                     movies.add(name);
                     System.out.println(name);
                 }
