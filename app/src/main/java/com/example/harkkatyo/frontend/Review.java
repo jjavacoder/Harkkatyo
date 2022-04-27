@@ -63,7 +63,6 @@ public class Review extends AppCompatActivity {
                 float stars = ratingbar.getRating();
                 String text = reviewText.getText().toString();
 
-
                 ReviewHandler reviewHandler = new ReviewHandler();
                 reviewHandler.addReview(name, date, text, stars);
 

@@ -4,7 +4,6 @@ package com.example.harkkatyo.backend;
 import com.example.harkkatyo.frontend.Reviews;
 
 import java.util.Comparator;
-import java.util.Date;
 
 public class Review  {
     String movieName;
