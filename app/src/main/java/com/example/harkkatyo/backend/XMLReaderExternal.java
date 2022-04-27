@@ -17,33 +17,31 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class XMLReaderExternal {
-    MovieHandler writer = new MovieHandler();
     ArrayList<String> movies = new ArrayList<>();
     Context context;
     String URL = "https://www.finnkino.fi/xml/Events/";
 
-
     public ArrayList<String> read() {
+        //read external XML file
         try {
             context = App.getContext();
             //give permissions
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            //create a new instance of DocumentBuilderFactory and??
+
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            //parse using the builder
             Document doc = builder.parse(URL);
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getDocumentElement().getElementsByTagName("Event");
 
-
+            //go through nodelist
             for (int i = 0; i < nList.getLength(); i++) {
                 Node node = nList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     String name = element.getElementsByTagName("Title").item(0).getTextContent();
+                    //add names to arraylist
                     movies.add(name);
-
                 }
             }
         } catch (IOException e) {

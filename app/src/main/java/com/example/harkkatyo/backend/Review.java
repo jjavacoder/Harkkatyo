@@ -11,14 +11,14 @@ public class Review  {
     String text;
     float stars;
 
-
+    //constructor
     public Review(String movieName, String date, String text, float stars) {
-
         this.movieName = movieName;
         this.date = date;
         this.text = text;
         this.stars = stars;
     }
+
     public static Comparator<Review>ReviewsNamesortComparator = new Comparator<Review>() {
         @Override
         public int compare(Review t1, Review t2) {
