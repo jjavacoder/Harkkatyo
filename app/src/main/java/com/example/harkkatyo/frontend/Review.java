@@ -25,6 +25,8 @@ public class Review extends AppCompatActivity {
     private Button dateButton;
     private Button submitbutton;
     EditText reviewText;
+    String name;
+    String date;
 
 
     @Override
@@ -36,14 +38,14 @@ public class Review extends AppCompatActivity {
         submitbutton = findViewById(R.id.submitButton);
         reviewText = (EditText) findViewById(R.id.writeReview);
 
-        String name = "James Bond";
-        String date = "20.02.2021";
-        String text = "Bad movie";
-        float stars = (float) 1.2;
+        //String name = "James Bond";
+        //String date = "20.02.2021";
+        //String text = "Bad movie";
+        //float stars = (float) 1.2;
 
-        System.out.println("aktiviteetti reviewissä");
-        ReviewHandler reviewHandler = new ReviewHandler();
-        reviewHandler.addReview(name, date, text, stars);
+        //System.out.println("aktiviteetti reviewissä");
+        //ReviewHandler reviewHandler = new ReviewHandler();
+        //reviewHandler.addReview(name, date, text, stars);
 
         //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
@@ -51,17 +53,24 @@ public class Review extends AppCompatActivity {
         if(extras != null){
             String moviename = extras.getString("key");
             Display.setText(String.valueOf(moviename));
+            name = moviename;
         }
 
         //click event on submit button
         submitbutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                float totalStarts = ratingbar.getRating();
-                String textReview = reviewText.getText().toString();
+                float stars = ratingbar.getRating();
+                String text = reviewText.getText().toString();
 
 
-                System.out.println(totalStarts + textReview); //Testausta varten, poistetaan lopullisesta työstä!
+                System.out.println("aktiviteetti reviewissä");
+                ReviewHandler reviewHandler = new ReviewHandler();
+                reviewHandler.addReview(name, date, text, stars);
+
+                changelayout();
+
+                System.out.println(stars + text); //Testausta varten, poistetaan lopullisesta työstä!
             }
         });
         initDatePicker();
@@ -138,6 +147,11 @@ public class Review extends AppCompatActivity {
 
     public void openDatePicker(View V){
         datePicker.show();
+    }
+
+    public void changelayout(){
+        Intent intent = new Intent(Review.this, Reviews.class);
+        startActivity(intent);
     }
 
     /*public void archivelayoutButton(View view){
