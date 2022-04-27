@@ -53,7 +53,6 @@ public class Reviews extends AppCompatActivity {
             //reviews.get(i).getText();
             //reviews.get(i).getStars();
 
-
         }
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -61,14 +60,12 @@ public class Reviews extends AppCompatActivity {
                 if(y==0){
                     Collections.sort(reviews,Review.ReviewsNamesortComparator);
 
-
                 }else{
                     Collections.sort(reviews,Review.StarssortComparator);
 
                 }
 
             }
-
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
