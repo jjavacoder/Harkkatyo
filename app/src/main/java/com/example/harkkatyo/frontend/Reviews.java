@@ -80,7 +80,6 @@ public class Reviews extends AppCompatActivity {
                             myList.append((tmp.toString() + "\n\n"));}
                         System.out.println(reviews);
 
-
                 } else {
                     Collections.sort(reviews, Review.StarssortComparator);
 
