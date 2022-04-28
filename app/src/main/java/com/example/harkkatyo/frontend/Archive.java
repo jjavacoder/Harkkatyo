@@ -102,6 +102,7 @@ public class Archive extends AppCompatActivity {
 
 
     }
+
     }
     /*public void mainpagelayoutButton(View view){
         setContentView(R.layout.activity_mainpage);

@@ -70,6 +70,10 @@ public class Review extends AppCompatActivity {
                     reviewHandler.addReview(name, date, text, stars);
 
                     changelayout();
+                    name = null;
+                    date = null;
+                    text = null;
+                    stars = 0;
                 } else if(stars == 0) {
                     Toast.makeText(Review.this, "Rate the movie",Toast.LENGTH_SHORT).show();
                 }else if(text == null) {
