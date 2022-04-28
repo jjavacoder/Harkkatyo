@@ -9,7 +9,7 @@
     <string name="spin">SORT</string>
     <string-array name="sortnames">
         <item>"Stars"</item>
-        <item>"Date"</item>
+        <item>"A->Z"</item>
     </string-array>
     //mainpage
     <string name="name">FINNKINO</string>

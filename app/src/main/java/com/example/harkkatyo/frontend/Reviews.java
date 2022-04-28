@@ -71,7 +71,7 @@ public class Reviews extends AppCompatActivity {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int y, long l) {
-                if (y == 0) {
+                if (y == 1) {
                     Collections.sort(reviews, Review.ReviewsNamesortComparator);
 
                     //for(int i = 0; i<reviews.size();i++) {
@@ -80,8 +80,10 @@ public class Reviews extends AppCompatActivity {
                             myList.append((tmp.toString() + "\n\n"));}
                         System.out.println(reviews);
 
+
                 } else {
                     Collections.sort(reviews, Review.StarssortComparator);
+                    System.out.println(reviews);
 
 
                     //for(int i = 0; i<reviews.size();i++) {
