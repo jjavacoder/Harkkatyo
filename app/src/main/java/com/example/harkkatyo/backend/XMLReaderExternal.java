@@ -19,7 +19,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public class XMLReaderExternal {
     ArrayList<String> movies = new ArrayList<>();
     Context context;
-    String URL = "https://www.finnkino.fi/xml/Events/";
+    private String URL = "https://www.finnkino.fi/xml/Events/";
 
     //reads Finnkino XMl file and returns arraylist that includes the movies
     public ArrayList<String> read() {
