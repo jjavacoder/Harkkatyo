@@ -96,7 +96,7 @@ public class Review extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month +1;
-                String date = makeDateString(day, month, year);
+                date = makeDateString(day, month, year);
                 dateButton.setText(date);
             }
         };

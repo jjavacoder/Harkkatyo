@@ -185,11 +185,14 @@ public class ReviewHandler {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(output);
             transformer.transform(source, result);
+            output.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
         } catch (TransformerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
