@@ -27,10 +27,11 @@
         android:layout_width="339dp"
         android:layout_height="320dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/buttonab"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603" />
 
     <EditText
         android:id="@+id/search"

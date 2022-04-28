@@ -6,10 +6,10 @@ import com.example.harkkatyo.frontend.Reviews;
 import java.util.Comparator;
 
 public class Review  {
-    String movieName;
-    String date;
-    String text;
-    float stars;
+    private String movieName;
+    private String date;
+    private String text;
+    private float stars;
 
     //constructor
     public Review(String movieName, String date, String text, float stars) {

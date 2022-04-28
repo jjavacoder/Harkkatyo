@@ -35,16 +35,16 @@ public class ReviewHandler {
     private static final String ELEMENT_TEXT = "Text";
     private static final String ELEMENT_STARS = "Stars";
 
-    File path = App.getContext().getFilesDir();
-    String filePath = path + "/reviews.xml";
+    private File path = App.getContext().getFilesDir();
+    private String filePath = path + "/reviews.xml";
 
     //writes review to XML file
     public void addReview(String movieName, String date, String text, float stars) {
-        File file = new File(filePath);
         Review review = new Review(movieName, date, text, stars);
+        int number = checkIfExists();
 
         //checking if the file exists or not
-        if (file.exists()) {
+        if (number == 1) {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             Document doc = null;
             try {
