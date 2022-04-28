@@ -22,7 +22,7 @@ import java.util.List;
 
 public class Reviews extends AppCompatActivity {
 
-    ListView myList;
+    TextView myList;
     List<Review> mList = new ArrayList<Review>();
     ArrayList<Review> reviews = new ArrayList<>();
 
@@ -42,10 +42,15 @@ public class Reviews extends AppCompatActivity {
 
 
 
+
+
+
+
         ReviewHandler reviewHandler = new ReviewHandler();
         int returnNumber = reviewHandler.checkIfExists();
         if (returnNumber == 1) {
             reviews = reviewHandler.getReviews();
+            //myList.append(reviews.get(0).getMovieName());
             System.out.println("Movie name: " + reviews.get(0).getMovieName());
             System.out.println("Date: " + reviews.get(0).getDate());
             System.out.println(reviews.get(0).getText());
@@ -55,32 +60,50 @@ public class Reviews extends AppCompatActivity {
 
             //lista läpi for loopilla ja siitä olioy
 
-        for(int i = 0; i<reviews.size();i++) {
+        //for(int i = 0; i<reviews.size();i++) {
             //int number = reviews.get(i).compare(reviews.get(i));
-            Review number = reviews.get(i);
+            //Review number = reviews.get(i);}
             //reviews.get(i).getDate();
             //reviews.get(i).getText();
             //reviews.get(i).getStars();
 
-        }
+
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int y, long l) {
-                if(y==0){
-                    Collections.sort(reviews,Review.ReviewsNamesortComparator);
+                if (y == 0) {
+                    Collections.sort(reviews, Review.ReviewsNamesortComparator);
 
-                }else{
-                    Collections.sort(reviews,Review.StarssortComparator);
+                    //for(int i = 0; i<reviews.size();i++) {
+
+                        for (Review tmp : reviews){
+                            myList.append((tmp.toString() + "\n\n"));}
+                        System.out.println(reviews);
+
+
+                } else {
+                    Collections.sort(reviews, Review.StarssortComparator);
+
+
+                    //for(int i = 0; i<reviews.size();i++) {
+
+                    for (Review tmp : reviews) {
+                        myList.append((tmp.toString() + "\n\n"));
+                        System.out.println(reviews);
+                    }
 
                 }
-
             }
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
+
 
 
 
