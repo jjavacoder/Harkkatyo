@@ -24,6 +24,7 @@ public class Reviews extends AppCompatActivity {
 
     ListView myList;
     List<Review> mList = new ArrayList<Review>();
+    ArrayList<Review> reviews = new ArrayList<>();
 
 
 
@@ -32,8 +33,6 @@ public class Reviews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
         myList = findViewById(R.id.mytxt);
-
-
 
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,
@@ -44,7 +43,17 @@ public class Reviews extends AppCompatActivity {
 
 
         ReviewHandler reviewHandler = new ReviewHandler();
-        ArrayList<Review> reviews = reviewHandler.getReviews(); //lista läpi for loopilla ja siitä olioy
+        int returnNumber = reviewHandler.checkIfExists();
+        if (returnNumber == 1) {
+            reviews = reviewHandler.getReviews();
+            System.out.println("Movie name: " + reviews.get(0).getMovieName());
+            System.out.println("Date: " + reviews.get(0).getDate());
+            System.out.println(reviews.get(0).getText());
+            System.out.println(reviews.get(0).getStars());
+        }
+
+
+            //lista läpi for loopilla ja siitä olioy
 
         for(int i = 0; i<reviews.size();i++) {
             //int number = reviews.get(i).compare(reviews.get(i));
@@ -74,10 +83,7 @@ public class Reviews extends AppCompatActivity {
         });
 
 
-        System.out.println("Movie name: " + reviews.get(0).getMovieName());
-        System.out.println("Date: " + reviews.get(0).getDate());
-        System.out.println(reviews.get(0).getText());
-        System.out.println(reviews.get(0).getStars());
+
 
 
 

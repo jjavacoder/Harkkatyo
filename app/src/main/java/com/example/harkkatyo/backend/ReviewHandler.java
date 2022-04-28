@@ -133,6 +133,17 @@ public class ReviewHandler {
         }
     }
 
+    //check if file exists
+    public int checkIfExists(){
+        File file = new File(filePath);
+        if (file.exists()){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
     //reads XMl file and returns arraylist that includes reviews
     public ArrayList<Review> getReviews() {
         ArrayList<Review> reviews = new ArrayList<>();
