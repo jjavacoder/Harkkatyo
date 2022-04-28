@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.ReviewHandler;
@@ -27,6 +28,7 @@ public class Review extends AppCompatActivity {
     EditText reviewText;
     String name;
     String date;
+    String text;
 
 
     @Override
@@ -61,13 +63,20 @@ public class Review extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 float stars = ratingbar.getRating();
-                String text = reviewText.getText().toString();
+                text = reviewText.getText().toString();
+                if (stars != 0 && text != null && date != null) {
 
-                ReviewHandler reviewHandler = new ReviewHandler();
-                reviewHandler.addReview(name, date, text, stars);
+                    ReviewHandler reviewHandler = new ReviewHandler();
+                    reviewHandler.addReview(name, date, text, stars);
 
-                changelayout();
-
+                    changelayout();
+                } else if(stars == 0) {
+                    Toast.makeText(Review.this, "Rate the movie",Toast.LENGTH_SHORT).show();
+                }else if(text == null) {
+                    Toast.makeText(Review.this, "Write review",Toast.LENGTH_SHORT).show();
+                }else if(date == null) {
+                    Toast.makeText(Review.this, "Choose date",Toast.LENGTH_SHORT).show();
+                }
                 System.out.println(stars + text); //Testausta varten, poistetaan lopullisesta työstä!
             }
         });

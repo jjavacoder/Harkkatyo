@@ -76,7 +76,7 @@ public class Archive extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //show clicked movie
                 Toast.makeText(Archive.this, "You clicked " + movies.get(position),Toast.LENGTH_SHORT).show();
-                //Takes you to review movie
+                //                //Takes you to review movie
                 String moviename = movies.get(position);
                 Intent intent = new Intent(Archive.this, Review.class);
                 intent.putExtra("key", moviename);
