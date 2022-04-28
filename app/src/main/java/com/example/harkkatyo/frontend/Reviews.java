@@ -25,8 +25,7 @@ public class Reviews extends AppCompatActivity {
 
     TextView myList;
     ArrayList<Review> reviews = new ArrayList<>();
-
-
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
