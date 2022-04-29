@@ -76,7 +76,7 @@ public class Review extends AppCompatActivity {
                     stars = 0;
                 } else if(stars == 0) {
                     Toast.makeText(Review.this, "Rate the movie",Toast.LENGTH_SHORT).show();
-                }else if(text == null) {
+                }else if(reviewText.getText() == null) {
                     Toast.makeText(Review.this, "Write review",Toast.LENGTH_SHORT).show();
                 }else if(date == null) {
                     Toast.makeText(Review.this, "Choose date",Toast.LENGTH_SHORT).show();
@@ -164,6 +164,7 @@ public class Review extends AppCompatActivity {
         Intent intent = new Intent(Review.this, Reviews.class);
         startActivity(intent);
     }
+
 
     /*public void archivelayoutButton(View view){
         setContentView(R.layout.activity_archive);

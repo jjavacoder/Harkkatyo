@@ -30,6 +30,7 @@ public class Archive extends AppCompatActivity {
 
     ListView listView;
     Context context;
+    EditText searchmovie;
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
     MovieHandler movieHandler = new MovieHandler();
@@ -40,7 +41,7 @@ public class Archive extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
 
-        EditText searchmovie = (EditText) findViewById(R.id.search);
+        searchmovie = (EditText) findViewById(R.id.search);
 
         ArrayList<String> movies = movieHandler.getArrayList();
 
@@ -82,6 +83,15 @@ public class Archive extends AppCompatActivity {
                 intent.putExtra("key", moviename);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        searchmovie.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    searchmovie.getText().clear();
+                }
             }
         });
 
