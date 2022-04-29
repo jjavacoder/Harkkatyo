@@ -29,7 +29,6 @@ public class Archive extends AppCompatActivity {
     EditText searchmovie;
     File path = App.getContext().getFilesDir();
     String filePath = path + "/movies.xml";
-    MovieHandler movieHandler = new MovieHandler();
     private ArrayAdapter adapter;
 
     @Override
@@ -39,7 +38,7 @@ public class Archive extends AppCompatActivity {
 
         searchmovie = (EditText) findViewById(R.id.search);
 
-        ArrayList<String> movies = movieHandler.getArrayList();
+        ArrayList<String> movies = MovieHandler.getArrayList();
 
         //Archive list
         listView = findViewById(R.id.movieList);

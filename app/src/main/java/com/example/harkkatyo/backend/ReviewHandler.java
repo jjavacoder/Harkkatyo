@@ -36,17 +36,21 @@ public class ReviewHandler {
     private static final String ELEMENT_STARS = "Stars";
     private static final String ELEMENT_DIRECTOR = "Director";
 
-    private File path = App.getContext().getFilesDir();
-    private String filePath = path + "/reviews.xml";
+    private static File path = App.getContext().getFilesDir();
+    private static String filePath = path + "/reviews.xml";
+
+    private ReviewHandler(){
+
+    }
 
     //writes review to XML file
-    public void addReview(String movieName, String date, String text, float stars, String director) {
+    public static void addReview(String movieName, String date, String text, float stars, String director) {
         Review review = new Review(movieName, date, text, stars, director);
         Document doc = null;
         Element rootElement = null;
 
         //checking if the file exists or not
-        if (this.checkIfReviewXMLExists()) {
+        if (checkIfReviewXMLExists()) {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             try {
                 InputStream is = new FileInputStream(filePath);
@@ -115,7 +119,7 @@ public class ReviewHandler {
     }
 
     //check if file exists
-    public boolean checkIfReviewXMLExists(){
+    public static boolean checkIfReviewXMLExists(){
         File file = new File(filePath);
         if (file.exists()){
             return true;
@@ -126,7 +130,7 @@ public class ReviewHandler {
     }
 
     //reads XMl file and returns arraylist that includes reviews
-    public ArrayList<Review> getReviews() {
+    public static ArrayList<Review> getReviews() {
         ArrayList<Review> reviews = new ArrayList<>();
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         //read reviews from XML
@@ -162,7 +166,7 @@ public class ReviewHandler {
     }
 
     //writes document with elements to a file
-    public void writeXMLFile(String filePath, Document doc){
+    private static void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
         //write doc to file

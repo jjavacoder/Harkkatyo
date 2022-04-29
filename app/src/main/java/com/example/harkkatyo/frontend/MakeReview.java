@@ -57,9 +57,7 @@ public class MakeReview extends AppCompatActivity {
                 text = reviewText.getText().toString();
                 // If stars and date are given the information gets saved
                 if (stars != 0 && date != null) {
-
-                    ReviewHandler reviewHandler = new ReviewHandler();
-                    reviewHandler.addReview(name, date, text, stars, director);
+                    ReviewHandler.addReview(name, date, text, stars, director);
 
                     changelayout();
 

@@ -31,11 +31,15 @@ public class MovieHandler {
     private static final String ELEMENT_MOVIES = "Movies";
     private static final String ELEMENT_MOVIE = "Movie";
     private static final String ELEMENT_NAME = "Name";
-    File path = App.getContext().getFilesDir();
-    String filePath = path + "/movies.xml";
+    private static File path = App.getContext().getFilesDir();
+    private static String filePath = path + "/movies.xml";
+
+    private MovieHandler(){
+
+    }
 
     //writes movies to XMl file if they are not yet there
-    public void addMovie(ArrayList<String> movies) {
+    public static void addMovie(ArrayList<String> movies) {
         File file = new File(filePath);
 
         //test if the file already exists or not
@@ -126,7 +130,7 @@ public class MovieHandler {
         }
     }
 
-    public ArrayList<String> getArrayList(){
+    public static ArrayList<String> getArrayList(){
         XMLReaderExternal reader = new XMLReaderExternal();
         ArrayList<String> moviesToXML = reader.read();
         addMovie(moviesToXML);
@@ -135,7 +139,7 @@ public class MovieHandler {
     }
 
     //writes document with elements to a file
-    public void writeXMLFile(String filePath, Document doc){
+    public static void writeXMLFile(String filePath, Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
         try {
@@ -160,7 +164,7 @@ public class MovieHandler {
     }
 
     //reads XMl file and returns arraylist that includes movies
-    public ArrayList <String> getMovies() {
+    public static ArrayList <String> getMovies() {
         ArrayList<String> movies = new ArrayList<>();
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
