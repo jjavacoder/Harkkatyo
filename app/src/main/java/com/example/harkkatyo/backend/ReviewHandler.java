@@ -42,12 +42,12 @@ public class ReviewHandler {
     //writes review to XML file
     public void addReview(String movieName, String date, String text, float stars, String director) {
         Review review = new Review(movieName, date, text, stars, director);
-        int number = checkIfExists();
+        Document doc = null;
+        Element rootElement = null;
 
         //checking if the file exists or not
-        if (number == 1) {
+        if (this.checkIfReviewXMLExists()) {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            Document doc = null;
             try {
                 InputStream is = new FileInputStream(filePath);
                 DocumentBuilder db = docFactory.newDocumentBuilder();
@@ -65,39 +65,8 @@ public class ReviewHandler {
             //get root element
             NodeList nList = doc.getElementsByTagName(ELEMENT_REVIEWS);
             Node node = nList.item(0);
-            Element reviewsElement = (Element) node;
+            rootElement = (Element) node;
 
-            //set review element
-            Element reviewElement = doc.createElement(ELEMENT_REVIEW);
-            reviewsElement.appendChild(reviewElement);
-
-            //set name element
-            Element nameElement = doc.createElement(ELEMENT_NAME);
-            reviewElement.appendChild(nameElement);
-            nameElement.setTextContent(review.getMovieName());
-
-            //set date element
-            Element dateElement = doc.createElement(ELEMENT_DATE);
-            reviewElement.appendChild(dateElement);
-            dateElement.setTextContent(review.getDate());
-
-            //set text element
-            Element textElement = doc.createElement(ELEMENT_TEXT);
-            reviewElement.appendChild(textElement);
-            textElement.setTextContent(review.getText());
-
-            //set stars element
-            Element starsElement = doc.createElement(ELEMENT_STARS);
-            reviewElement.appendChild(starsElement);
-            starsElement.setTextContent(String.valueOf(review.getStars()));
-
-            //set director element
-            Element directorElement = doc.createElement(ELEMENT_DIRECTOR);
-            reviewElement.appendChild(directorElement);
-            directorElement.setTextContent(String.valueOf(review.getDirector()));
-
-
-            writeXMLFile(filePath, doc);
         } else {
             //create file
             try {
@@ -105,54 +74,54 @@ public class ReviewHandler {
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
                 // set root element
-                Document doc = docBuilder.newDocument();
-                Element rootElement = doc.createElement(ELEMENT_REVIEWS);
+                doc = docBuilder.newDocument();
+                rootElement = doc.createElement(ELEMENT_REVIEWS);
                 doc.appendChild(rootElement);
 
-                //set review element
-                Element reviewElement = doc.createElement(ELEMENT_REVIEW);
-                rootElement.appendChild(reviewElement);
-
-                //set name element
-                Element nameElement = doc.createElement(ELEMENT_NAME);
-                nameElement.setTextContent(review.getMovieName());
-                reviewElement.appendChild(nameElement);
-
-                //set date element
-                Element dateElement = doc.createElement(ELEMENT_DATE);
-                dateElement.setTextContent(review.getDate());
-                reviewElement.appendChild(dateElement);
-
-                //set text element
-                Element textElement = doc.createElement(ELEMENT_TEXT);
-                textElement.setTextContent(review.getText());
-                reviewElement.appendChild(textElement);
-
-                //set stars element
-                Element starsElement = doc.createElement(ELEMENT_STARS);
-                starsElement.setTextContent(String.valueOf(review.getStars()));
-                reviewElement.appendChild(starsElement);
-
-                //set director element
-                Element directorElement = doc.createElement(ELEMENT_DIRECTOR);
-                reviewElement.appendChild(directorElement);
-                directorElement.setTextContent(String.valueOf(review.getDirector()));
-
-                writeXMLFile(filePath, doc);
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             }
         }
+        //set review element
+        Element reviewElement = doc.createElement(ELEMENT_REVIEW);
+        rootElement.appendChild(reviewElement);
+
+        //set name element
+        Element nameElement = doc.createElement(ELEMENT_NAME);
+        nameElement.setTextContent(review.getMovieName());
+        reviewElement.appendChild(nameElement);
+
+        //set date element
+        Element dateElement = doc.createElement(ELEMENT_DATE);
+        dateElement.setTextContent(review.getDate());
+        reviewElement.appendChild(dateElement);
+
+        //set text element
+        Element textElement = doc.createElement(ELEMENT_TEXT);
+        textElement.setTextContent(review.getText());
+        reviewElement.appendChild(textElement);
+
+        //set stars element
+        Element starsElement = doc.createElement(ELEMENT_STARS);
+        starsElement.setTextContent(String.valueOf(review.getStars()));
+        reviewElement.appendChild(starsElement);
+
+        //set director element
+        Element directorElement = doc.createElement(ELEMENT_DIRECTOR);
+        reviewElement.appendChild(directorElement);
+        directorElement.setTextContent(String.valueOf(review.getDirector()));
+
+        writeXMLFile(filePath, doc);
     }
 
     //check if file exists
-    public int checkIfExists(){
+    public boolean checkIfReviewXMLExists(){
         File file = new File(filePath);
         if (file.exists()){
-            return 1;
+            return true;
         }
         else{
-            return 0;
+            return false;
         }
     }
 

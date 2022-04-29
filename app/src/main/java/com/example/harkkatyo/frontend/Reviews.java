@@ -48,8 +48,7 @@ public class Reviews extends AppCompatActivity {
 
         //check if the review XML file exists
         ReviewHandler reviewHandler = new ReviewHandler();
-        int returnNumber = reviewHandler.checkIfExists();
-        if (returnNumber == 1) {
+        if (reviewHandler.checkIfReviewXMLExists()) {
             reviews = reviewHandler.getReviews();/*
             System.out.println("Movie name: " + reviews.get(0).getMovieName());
             System.out.println("Date: " + reviews.get(0).getDate());
