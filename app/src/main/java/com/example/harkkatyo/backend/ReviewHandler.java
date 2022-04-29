@@ -34,13 +34,14 @@ public class ReviewHandler {
     private static final String ELEMENT_DATE = "Date";
     private static final String ELEMENT_TEXT = "Text";
     private static final String ELEMENT_STARS = "Stars";
+    private static final String ELEMENT_DIRECTOR = "Director";
 
     private File path = App.getContext().getFilesDir();
     private String filePath = path + "/reviews.xml";
 
     //writes review to XML file
-    public void addReview(String movieName, String date, String text, float stars) {
-        Review review = new Review(movieName, date, text, stars);
+    public void addReview(String movieName, String date, String text, float stars, String director) {
+        Review review = new Review(movieName, date, text, stars, director);
         int number = checkIfExists();
 
         //checking if the file exists or not
@@ -90,6 +91,12 @@ public class ReviewHandler {
             reviewElement.appendChild(starsElement);
             starsElement.setTextContent(String.valueOf(review.getStars()));
 
+            //set director element
+            Element directorElement = doc.createElement(ELEMENT_DIRECTOR);
+            reviewElement.appendChild(directorElement);
+            directorElement.setTextContent(String.valueOf(review.getDirector()));
+
+
             writeXMLFile(filePath, doc);
         } else {
             //create file
@@ -125,6 +132,11 @@ public class ReviewHandler {
                 Element starsElement = doc.createElement(ELEMENT_STARS);
                 starsElement.setTextContent(String.valueOf(review.getStars()));
                 reviewElement.appendChild(starsElement);
+
+                //set director element
+                Element directorElement = doc.createElement(ELEMENT_DIRECTOR);
+                reviewElement.appendChild(directorElement);
+                directorElement.setTextContent(String.valueOf(review.getDirector()));
 
                 writeXMLFile(filePath, doc);
             } catch (ParserConfigurationException e) {
@@ -162,9 +174,10 @@ public class ReviewHandler {
                     String date = element.getElementsByTagName(ELEMENT_DATE).item(0).getTextContent();
                     String text = element.getElementsByTagName(ELEMENT_TEXT).item(0).getTextContent();
                     String starsString = element.getElementsByTagName(ELEMENT_STARS).item(0).getTextContent();
+                    String director = element.getElementsByTagName(ELEMENT_DIRECTOR).item(0).getTextContent();
                     float stars = Float.parseFloat(starsString);
                     //create an instance of review
-                    Review review = new Review(name, date, text, stars);
+                    Review review = new Review(name, date, text, stars, director);
                     //add review instance to reviews arraylist
                     reviews.add(review);
                 }

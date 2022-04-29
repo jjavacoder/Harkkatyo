@@ -27,6 +27,7 @@ public class MakeReview extends AppCompatActivity {
     String name;
     String date;
     String text;
+    String director = "matti";
 
 
     @Override
@@ -58,7 +59,7 @@ public class MakeReview extends AppCompatActivity {
                 if (stars != 0 && date != null) {
 
                     ReviewHandler reviewHandler = new ReviewHandler();
-                    reviewHandler.addReview(name, date, text, stars);
+                    reviewHandler.addReview(name, date, text, stars, director);
 
                     changelayout();
 

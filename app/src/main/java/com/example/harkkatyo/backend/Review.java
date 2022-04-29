@@ -10,13 +10,15 @@ public class Review  {
     private String date;
     private String text;
     private float stars;
+    private String director;
 
     //constructor
-    public Review(String movieName, String date, String text, float stars) {
+    public Review(String movieName, String date, String text, float stars, String director) {
         this.movieName = movieName;
         this.date = date;
         this.text = text;
         this.stars = stars;
+        this.director = director;
     }
 
     public static Comparator<Review>ReviewsNamesortComparator = new Comparator<Review>() {
@@ -51,6 +53,10 @@ public class Review  {
         return stars;
     }
     //public void setStars(float stars){this.stars = stars;}
+
+    public String getDirector() {
+        return director;
+    }
 
     @Override
     public String toString() {
