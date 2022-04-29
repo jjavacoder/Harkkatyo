@@ -50,6 +50,7 @@ public class Review  {
     //public void setText(String text){this.text = text;}
 
     public float getStars() {
+
         return stars;
     }
     //public void setStars(float stars){this.stars = stars;}
@@ -67,33 +68,7 @@ public class Review  {
                 ;
 
     }
-    /*
 
-
-    public static Comparator<Review>ReviewsNamesortComparator = new Comparator<Review>() {
-        @Override
-        public int compare(Review, Review) {
-            return this.movieName.compareToIgnoreCase(review.movieName);
-        }
-    }
-    public static Comparator<Reviews>ReviewsStarssortComparator = new Comparator<Reviews>() {
-        @Override
-        public int compare(Reviews reviews) {
-            return this.stars < review.stars ? 1 : (this.stars > review.stars ? -1 : 0);
-
-        }
-
-
-    @Override
-    public int compareTo(Review review) {
-        return this.movieName.compareToIgnoreCase(review.movieName);
-
-    }
-    @Override
-    public int compareTo() {
-        return this.stars < review.stars ? 1 : (this.stars > review.stars ? -1 : 0);
-
-}*/
 
 
 }

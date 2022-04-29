@@ -7,6 +7,7 @@
     <string name="m3">ICE AGE 3</string>
     <string name="back_b">BACK</string>
     <string name="spin">SORT</string>
+    <string name="search">Search:</string>
     <string-array name="sortnames">
         <item>"Stars"</item>
         <item>"A->Z"</item>
@@ -15,5 +16,6 @@
     <string name="name">FINNKINO</string>
     <string name="review_b">REVIEWS</string>
     <string name="archive_b">MOVIE ARCHIVE</string>
+    <string name="sort">SORT</string>
 
 </resources>
