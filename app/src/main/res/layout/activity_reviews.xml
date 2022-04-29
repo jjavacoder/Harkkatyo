@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F4F2F2"
-        android:backgroundTint="#F3EFEF"
+        android:background="#050505"
+        android:backgroundTint="#020202"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,11 +67,13 @@
 
         <TextView
             android:id="@+id/mytxt"
-            android:layout_width="330dp"
-            android:layout_height="435dp"
+            android:layout_width="411dp"
+            android:layout_height="376dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.56" />

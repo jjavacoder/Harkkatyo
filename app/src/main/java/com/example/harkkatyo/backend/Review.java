@@ -54,11 +54,12 @@ public class Review  {
 
     @Override
     public String toString() {
-        return movieName +
-                " " + date +
-                "\n" + "'" + text + "'" +
-                "   stars:" + stars
+        return date +
+                "       " + movieName +
+                "\n" + "STARS: " + stars+
+                "           ''" + text + "''"
                 ;
+
     }
     /*
 
