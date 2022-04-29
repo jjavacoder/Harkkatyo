@@ -1,7 +1,5 @@
 package com.example.harkkatyo.frontend;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -9,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +18,6 @@ import android.widget.Toast;
 import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.App;
 import com.example.harkkatyo.backend.MovieHandler;
-import com.example.harkkatyo.backend.XMLReaderExternal;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -80,7 +76,7 @@ public class Archive extends AppCompatActivity {
                 Toast.makeText(Archive.this, "You clicked " + moviename,Toast.LENGTH_SHORT).show();
                 //                //Takes you to review movie
                 //String moviename = movies.get(position);
-                Intent intent = new Intent(Archive.this, Review.class);
+                Intent intent = new Intent(Archive.this, MakeReview.class);
                 intent.putExtra("key", moviename);
                 startActivity(intent);
                 finish();

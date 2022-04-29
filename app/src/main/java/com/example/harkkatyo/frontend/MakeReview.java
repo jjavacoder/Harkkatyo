@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,9 +18,8 @@ import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.ReviewHandler;
 
 import java.util.Calendar;
-import java.util.Date;
 
-public class Review extends AppCompatActivity {
+public class MakeReview extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private Button dateButton;
     private Button submitbutton;
@@ -34,20 +32,12 @@ public class Review extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review);
+        setContentView(R.layout.activity_makereview);
 
         final RatingBar ratingbar = findViewById(R.id.ratingBar);
         submitbutton = findViewById(R.id.submitButton);
         reviewText = (EditText) findViewById(R.id.writeReview);
 
-        //String name = "James Bond";
-        //String date = "20.02.2021";
-        //String text = "Bad movie";
-        //float stars = (float) 1.2;
-
-        //System.out.println("aktiviteetti reviewissä");
-        //ReviewHandler reviewHandler = new ReviewHandler();
-        //reviewHandler.addReview(name, date, text, stars);
 
         //Getting the name of the movie from Archive
         TextView Display = findViewById(R.id.movieName);
@@ -64,24 +54,25 @@ public class Review extends AppCompatActivity {
             public void onClick(View v){
                 float stars = ratingbar.getRating();
                 text = reviewText.getText().toString();
+                // If all information is given the information gets saved
                 if (stars != 0 && text != null && date != null) {
 
                     ReviewHandler reviewHandler = new ReviewHandler();
                     reviewHandler.addReview(name, date, text, stars);
 
                     changelayout();
+
                     name = null;
                     date = null;
                     text = null;
                     stars = 0;
                 } else if(stars == 0) {
-                    Toast.makeText(Review.this, "Rate the movie",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeReview.this, "Rate the movie",Toast.LENGTH_SHORT).show();
                 }else if(reviewText.getText() == null) {
-                    Toast.makeText(Review.this, "Write review",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeReview.this, "Write review",Toast.LENGTH_SHORT).show();
                 }else if(date == null) {
-                    Toast.makeText(Review.this, "Choose date",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MakeReview.this, "Choose date",Toast.LENGTH_SHORT).show();
                 }
-                System.out.println(stars + text); //Testausta varten, poistetaan lopullisesta työstä!
             }
         });
         initDatePicker();
@@ -161,7 +152,7 @@ public class Review extends AppCompatActivity {
     }
 
     public void changelayout(){
-        Intent intent = new Intent(Review.this, Reviews.class);
+        Intent intent = new Intent(MakeReview.this, Reviews.class);
         startActivity(intent);
     }
 
