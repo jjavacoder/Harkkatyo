@@ -72,10 +72,11 @@ public class Archive extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String moviename = movies.get(movies.indexOf(adapter.getItem(position)));
+
                 //show clicked movie
                 Toast.makeText(Archive.this, "You clicked " + moviename,Toast.LENGTH_SHORT).show();
-                //                //Takes you to review movie
-                //String moviename = movies.get(position);
+
+                //Takes you to review movie
                 Intent intent = new Intent(Archive.this, MakeReview.class);
                 intent.putExtra("key", moviename);
                 startActivity(intent);
@@ -83,6 +84,7 @@ public class Archive extends AppCompatActivity {
             }
         });
 
+        //The text from the search object clears on click
         searchmovie.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -92,6 +94,7 @@ public class Archive extends AppCompatActivity {
             }
         });
 
+        //Change activity
         Button bt2 = findViewById(R.id.buttonab);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override

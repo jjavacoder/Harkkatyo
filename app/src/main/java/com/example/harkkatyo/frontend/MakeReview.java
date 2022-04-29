@@ -54,8 +54,8 @@ public class MakeReview extends AppCompatActivity {
             public void onClick(View v){
                 float stars = ratingbar.getRating();
                 text = reviewText.getText().toString();
-                // If all information is given the information gets saved
-                if (stars != 0 && text != null && date != null) {
+                // If stars and date are given the information gets saved
+                if (stars != 0 && date != null) {
 
                     ReviewHandler reviewHandler = new ReviewHandler();
                     reviewHandler.addReview(name, date, text, stars);
@@ -68,9 +68,7 @@ public class MakeReview extends AppCompatActivity {
                     stars = 0;
                 } else if(stars == 0) {
                     Toast.makeText(MakeReview.this, "Rate the movie",Toast.LENGTH_SHORT).show();
-                }else if(reviewText.getText() == null) {
-                    Toast.makeText(MakeReview.this, "Write review",Toast.LENGTH_SHORT).show();
-                }else if(date == null) {
+                } else if(date == null) {
                     Toast.makeText(MakeReview.this, "Choose date",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -78,6 +76,7 @@ public class MakeReview extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.selectDate);
 
+        //Changing the layout
         Button btrb4 = findViewById(R.id.buttonrb4);
         btrb4.setOnClickListener(new View.OnClickListener() {
             @Override
