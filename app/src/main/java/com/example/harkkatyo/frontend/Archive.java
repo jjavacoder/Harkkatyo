@@ -75,10 +75,11 @@ public class Archive extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String moviename = movies.get(movies.indexOf(adapter.getItem(position)));
                 //show clicked movie
-                Toast.makeText(Archive.this, "You clicked " + movies.get(position),Toast.LENGTH_SHORT).show();
+                Toast.makeText(Archive.this, "You clicked " + moviename,Toast.LENGTH_SHORT).show();
                 //                //Takes you to review movie
-                String moviename = movies.get(position);
+                //String moviename = movies.get(position);
                 Intent intent = new Intent(Archive.this, Review.class);
                 intent.putExtra("key", moviename);
                 startActivity(intent);
