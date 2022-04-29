@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.harkkatyo.R;
 import com.example.harkkatyo.backend.Review;
@@ -45,7 +46,7 @@ public class Reviews extends AppCompatActivity {
 
 
 
-
+        //check if the review XML file exists
         ReviewHandler reviewHandler = new ReviewHandler();
         int returnNumber = reviewHandler.checkIfExists();
         if (returnNumber == 1) {
@@ -54,6 +55,9 @@ public class Reviews extends AppCompatActivity {
             System.out.println("Date: " + reviews.get(0).getDate());
             System.out.println(reviews.get(0).getText());
             System.out.println(reviews.get(0).getStars());*/
+        }
+        else{
+            Toast.makeText(Reviews.this, "The list is empty. Make reviews.",Toast.LENGTH_SHORT).show();
         }
 
 
