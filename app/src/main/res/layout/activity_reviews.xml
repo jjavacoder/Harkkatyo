@@ -67,16 +67,15 @@
 
         <TextView
             android:id="@+id/mytxt"
-            android:layout_width="411dp"
-            android:layout_height="376dp"
+            android:layout_width="316dp"
+            android:layout_height="300dp"
             android:scrollbars="vertical"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.56" />
+            app:layout_constraintVertical_bias="0.559" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
