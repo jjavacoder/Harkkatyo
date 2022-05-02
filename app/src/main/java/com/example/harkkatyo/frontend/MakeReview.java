@@ -24,10 +24,11 @@ public class MakeReview extends AppCompatActivity {
     private Button dateButton;
     private Button submitbutton;
     EditText reviewText;
+    EditText directorText;
     String name;
     String date;
     String text;
-    String director = "matti";
+    String director;
 
 
     @Override
@@ -38,6 +39,7 @@ public class MakeReview extends AppCompatActivity {
         final RatingBar ratingbar = findViewById(R.id.ratingBar);
         submitbutton = findViewById(R.id.submitButton);
         reviewText = (EditText) findViewById(R.id.writeReview);
+        directorText = (EditText) findViewById(R.id.writeDirector);
 
 
         //Getting the name of the movie from Archive
@@ -55,6 +57,7 @@ public class MakeReview extends AppCompatActivity {
             public void onClick(View v){
                 float stars = ratingbar.getRating();
                 text = reviewText.getText().toString();
+                director = directorText.getText().toString();
                 // If stars and date are given the information gets saved
                 if (stars != 0 && date != null) {
                     ReviewHandler.addReview(name, date, text, stars, director);
@@ -64,6 +67,7 @@ public class MakeReview extends AppCompatActivity {
                     name = null;
                     date = null;
                     text = null;
+                    director = null;
                     stars = 0;
                 } else if(stars == 0) {
                     Toast.makeText(MakeReview.this, "Rate the movie",Toast.LENGTH_SHORT).show();
