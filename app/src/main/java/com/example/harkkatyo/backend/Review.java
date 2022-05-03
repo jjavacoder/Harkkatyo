@@ -1,8 +1,6 @@
 package com.example.harkkatyo.backend;
 
 
-import com.example.harkkatyo.frontend.Reviews;
-
 import java.util.Comparator;
 
 public class Review  {

@@ -93,7 +93,6 @@ public class Reviews extends AppCompatActivity {
         }
 
 
-
         //Back painikkeen toiminto eli muuttaa näkymää takaisin Mainactivityyn
         Button bt2 = findViewById(R.id.buttonrb);
         bt2.setOnClickListener(new View.OnClickListener() {
