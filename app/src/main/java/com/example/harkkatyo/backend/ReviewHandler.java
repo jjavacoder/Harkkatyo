@@ -115,7 +115,7 @@ public class ReviewHandler {
         reviewElement.appendChild(directorElement);
         directorElement.setTextContent(String.valueOf(review.getDirector()));
 
-        writeXMLFile(filePath, doc);
+        writeXMLFile(doc);
     }
 
     //check if file exists
@@ -166,7 +166,7 @@ public class ReviewHandler {
     }
 
     //writes document with elements to a file
-    private static void writeXMLFile(String filePath, Document doc){
+    private static void writeXMLFile(Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
         //write doc to file

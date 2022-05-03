@@ -39,7 +39,7 @@ public class MovieHandler {
     }
 
     //writes movies to XMl file if they are not yet there
-    public static void addMovie(ArrayList<String> movies) {
+    private static void addMovie(ArrayList<String> movies) {
         File file = new File(filePath);
 
         //test if the file already exists or not
@@ -99,7 +99,7 @@ public class MovieHandler {
                     nameElement.setTextContent(movieName);
                 }
             }
-            writeXMLFile(filePath, doc);
+            writeXMLFile(doc);
         } else {
             //create file
             try {
@@ -123,7 +123,7 @@ public class MovieHandler {
                     name.setTextContent(movies.get(i));
                     movie.appendChild(name);
                 }
-                writeXMLFile(filePath, doc);
+                writeXMLFile(doc);
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             }
@@ -139,7 +139,7 @@ public class MovieHandler {
     }
 
     //writes document with elements to a file
-    public static void writeXMLFile(String filePath, Document doc){
+    private static void writeXMLFile(Document doc){
         FileOutputStream output = null;
         Context context = App.getContext();
         try {
@@ -164,7 +164,7 @@ public class MovieHandler {
     }
 
     //reads XMl file and returns arraylist that includes movies
-    public static ArrayList <String> getMovies() {
+    private static ArrayList <String> getMovies() {
         ArrayList<String> movies = new ArrayList<>();
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
