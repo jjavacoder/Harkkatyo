@@ -108,7 +108,5 @@ public class Reviews extends AppCompatActivity {
     public void loadActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
-
     }
 }
