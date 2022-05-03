@@ -21,12 +21,16 @@ public class Review  {
         this.director = director;
     }
 
+    //vertaa movieNameja toisiinsa, myöhemmin collections.sort järjestää ne a->z
     public static Comparator<Review>ReviewsNamesortComparator = new Comparator<Review>() {
         @Override
         public int compare(Review t1, Review t2) {
             return t1.movieName.compareToIgnoreCase(t2.movieName);
         }
     };
+
+    //vertaa tähtien määrää eli lukua float toisiinsa, jonka jälkeen collections.sort
+    //järjestää ne riippuen palautuneesta arvosta
     public static Comparator<Review>StarssortComparator = new Comparator<Review>() {
         @Override
         public int compare(Review t1, Review t2) {
@@ -34,37 +38,34 @@ public class Review  {
         }};
 
 
+
     public String getMovieName() {
         return movieName;
     }
-   // public void setMovieName(String movieName){this.movieName = movieName;}
 
     public String getDate() {
         return date;
     }
-    //public void setDate(String date){this.date = date;}
 
     public String getText() {
         return text;
     }
-    //public void setText(String text){this.text = text;}
 
     public float getStars() {
 
         return stars;
     }
-    //public void setStars(float stars){this.stars = stars;}
 
     public String getDirector() {
         return director;
     }
-
-    @Override
+    //Muotoilee textviewin
+   @Override
     public String toString() {
         return date +
                 "       " + movieName +
-                "\n" + "STARS: " + stars+
-                "           ''" + text + "''"
+                "\n" + "STARS: " + stars+"        Director: " + director+
+                "\n''" + text + "''"
                 ;
 
     }

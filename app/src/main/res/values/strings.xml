@@ -7,7 +7,7 @@
     <string name="m3">ICE AGE 3</string>
     <string name="back_b">BACK</string>
     <string name="spin">SORT</string>
-    <string name="search">Search:</string>
+    <string name="search">Search director:</string>
     <string-array name="sortnames">
         <item>"Stars"</item>
         <item>"A->Z"</item>

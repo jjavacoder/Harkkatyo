@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 
@@ -26,16 +27,19 @@ public class Reviews extends AppCompatActivity {
 
     TextView myList;
     ArrayList<Review> reviews = new ArrayList<>();
+
+
+
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
         myList = findViewById(R.id.mytxt);
         myList.setMovementMethod(new ScrollingMovementMethod());
+
 
         Spinner mySpinner = (Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,
@@ -44,44 +48,33 @@ public class Reviews extends AppCompatActivity {
         mySpinner.setAdapter(myAdapter);
 
 
-
-
         //check if the review XML file exists
         if (ReviewHandler.checkIfReviewXMLExists()) {
-            reviews = ReviewHandler.getReviews();/*
-            System.out.println("Movie name: " + reviews.get(0).getMovieName());
-            System.out.println("Date: " + reviews.get(0).getDate());
-            System.out.println(reviews.get(0).getText());
-            System.out.println(reviews.get(0).getStars());*/
+            reviews = ReviewHandler.getReviews();
+        } else {
+            Toast.makeText(Reviews.this, "The list is empty. Make reviews.", Toast.LENGTH_SHORT).show();
         }
-        else{
-            Toast.makeText(Reviews.this, "The list is empty. Make reviews.",Toast.LENGTH_SHORT).show();
-        }
-
 
 
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int y, long l) {
                 if (y == 1) {
-                    Collections.sort(reviews, Review.ReviewsNamesortComparator);
+                    Collections.sort(reviews, Review.ReviewsNamesortComparator);//järjestää tulokset a->z
+                    //clears textview before adding new
                     myList.setText("");
-
-
-
 
 
                 } else {
+                    //järjestää tulokset tähtien mukaan
                     Collections.sort(reviews, Review.StarssortComparator);
+                    //clears textview before adding new
                     myList.setText("");
 
-                    System.out.println(reviews);
 
-
-                    }showList();
-
-
-
+                }
+                showList();//näyttää textviewiin lisätyt arvostelut
+                //muotoiltuna ja järjestettynä
             }
 
 
@@ -91,30 +84,25 @@ public class Reviews extends AppCompatActivity {
             }
         });
 
+    }
+    // mikäli on osa listaa, lisää listaan ja kutsuu toString muotoilua
+    private void showList() {
+        for (Review tmp : reviews) {
+            myList.append((tmp.toString() + "\n\n"));
+
+        }
 
 
+
+        //Back painikkeen toiminto eli muuttaa näkymää takaisin Mainactivityyn
         Button bt2 = findViewById(R.id.buttonrb);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadActivity();
-
-
             }
 
-
         });
-
-
-    }
-
-    private void showList() {
-        for (Review tmp : reviews) {
-            myList.append((tmp.toString() + "\n\n"));
-
-
-
-        }
     }
 
 

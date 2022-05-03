@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#050505"
-        android:backgroundTint="#020202"
+        android:backgroundTint="#090909"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="201dp"
-            android:layout_height="53dp"
+            android:layout_width="160dp"
+            android:layout_height="56dp"
             android:background="#FFEB3B"
             android:backgroundTint="#FFEB3B"
             android:contentDescription="@string/spin"
@@ -28,10 +28,10 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.83"
+            app:layout_constraintHorizontal_bias="0.936"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.13999999" />
+            app:layout_constraintVertical_bias="0.139" />
 
         <TextView
             android:id="@+id/textView2"
@@ -46,10 +46,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.050000012" />
+            app:layout_constraintVertical_bias="0.047" />
 
         <Button
             android:id="@+id/buttonrb"
@@ -67,16 +67,16 @@
 
         <TextView
             android:id="@+id/mytxt"
-            android:layout_width="316dp"
-            android:layout_height="300dp"
+            android:layout_width="356dp"
+            android:layout_height="344dp"
             android:scrollbars="vertical"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.559" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

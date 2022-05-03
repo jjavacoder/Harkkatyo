@@ -35,8 +35,8 @@
 
     <EditText
         android:id="@+id/search"
-        android:layout_width="300dp"
-        android:layout_height="46dp"
+        android:layout_width="298dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Search movie"
