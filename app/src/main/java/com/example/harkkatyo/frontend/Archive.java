@@ -101,7 +101,6 @@ public class Archive extends AppCompatActivity {
                 loadActivity();
             }
 
-
         });
 
     }
